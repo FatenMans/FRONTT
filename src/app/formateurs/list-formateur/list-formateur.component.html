@@ -1,0 +1,112 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="mobile-menu-overlay"></div>
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">list-Formateur </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                January 2024
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Liste des Formateurs</h4>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>CIN</th>
+                                <th>Matricule</th>
+                                <th>Téléphone</th>
+                                <th>Montant</th>
+
+
+                                <th>Autorisation</th>
+                                <th>Type Formateur</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let formateur of formateurs">
+                                <td>{{ formateur.code }}</td>
+                                <td>{{ formateur.nom }}</td>
+                                <td>{{ formateur.prenom }}</td>
+                                <td>{{ formateur.cin }}</td>
+                                <td>{{ formateur.matricule }}</td>
+                                <td>{{ formateur.tel }}</td>
+                                <td>{{ formateur.montant }}</td>
+
+
+                                <td>{{ formateur.autorisation }}</td>
+                                <td>{{ formateur.typeFormateur }}</td>
+                                <td>{{ formateur.email }}</td>
+                                <td>
+                                    <button class="btn-custom btn-custom-modifier"
+                                        routerLink="/edit-formateur/{{formateur.id}}">Modifier</button>
+                                    <button class="btn-custom btn-custom-modifier"
+                                        (click)="deleteFormateur(formateur.id)">Supprimer</button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="collapse collapse-box" id="basic-table">
+                    <div class="code-box">
+                        <div class="clearfix">
+                            <a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left"
+                                data-clipboard-target="#basic-table-code">
+                                <i class="fa fa-clipboard"></i> Copy Code
+                            </a>
+                            <a href="#basic-table" class="btn btn-primary btn-sm pull-right" rel="content-y"
+                                data-toggle="collapse" role="button">
+                                <i class="fa fa-eye-slash"></i> Hide Code
+                            </a>
+                        </div>
+                        <pre><code class="xml copy-pre" id="basic-table-code">
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">#</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th scope="row">1</th>
+  </tr>
+</tbody>
+</table>
+
+    </code></pre>
+                    </div>
+                </div>
+            </div>

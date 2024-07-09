@@ -1,0 +1,64 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Modifier Formateur</h4>
+                        </div>
+                        <form [formGroup]="formModel" (ngSubmit)="ModifierFormateur()">
+                            <div class="form-group">
+                                <label for="code">Code</label>
+                                <input id="code" formControlName="code" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input id="nom" formControlName="nom" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom">Prénom</label>
+                                <input id="prenom" formControlName="prenom" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cin">CIN</label>
+                                <input id="cin" formControlName="cin" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="matricule">Matricule</label>
+                                <input id="matricule" formControlName="matricule" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="mail">Email</label>
+                                <input id="mail" formControlName="mail" class="form-control" type="email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Téléphone</label>
+                                <input id="tel" formControlName="tel" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Autorisation</label>
+                                <input id="tel" formControlName="autorisation" class="form-control" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="montant">Montant</label>
+                                <input id="montant" formControlName="montant" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="typeFormateur">Type de formateur</label>
+                                <input id="typeFormateur" formControlName="typeFormateur" class="form-control" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Modifier
+                                Formateur</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

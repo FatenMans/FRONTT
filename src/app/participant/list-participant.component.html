@@ -1,0 +1,84 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="./home.html">Formation</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">list-Formation</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                January 2024
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Liste des Participants</h4>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Type</th>
+                                <th>Lieu de Travail</th>
+                                <th>Email</th>
+                                <th>Date de Naissance</th>
+                                <th>Affectation</th>
+                                <th>Grade</th>
+                                <th>Date Embauche</th>
+                                <th>Fonction</th>
+                                <th>Salaire</th>
+                                <th>Sexe</th>
+                                <th>Hébergement Nuité</th>
+                                <th>Confirmation</th>
+                                <th>Age</th>
+                                <th>Matricule</th>
+                                <!-- Ajoutez d'autres colonnes si nécessaire -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let participant of participants">
+                                <td>{{ participant.id }}</td>
+                                <td>{{ participant.nom }}</td>
+                                <td>{{ participant.prenom }}</td>
+                                <td>{{ participant.type }}</td>
+                                <td>{{ participant.lieutravail }}</td>
+                                <td>{{ participant.email }}</td>
+                                <td>{{ participant.datNais }}</td>
+                                <td>{{ participant.Affectation }}</td>
+                                <td>{{ participant.codGrad }}</td>
+                                <td>{{ participant.datEmb }}</td>
+                                <td>{{ participant.fonction }}</td>
+                                <td>{{ participant.salaire }}</td>
+                                <td>{{ participant.sexe }}</td>
+                                <td>{{ participant.hebergementNuite }}</td>
+
+                                <td>{{ participant.confirmation }}</td>
+                                <td>{{ participant.agePers }}</td>
+                                <td>{{ participant.matricule }}</td>
+                                <!-- Ajouter d'autres colonnes ici si nécessaire -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>

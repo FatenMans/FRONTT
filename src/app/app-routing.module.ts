@@ -3,19 +3,83 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { ListFormationsComponent } from './list-formation/list-formation.component';
-import { ListFormateursComponent } from './list-formateur/list-formateur.component';
-import { AddFormationComponent } from './add-formation/add-formation.component';
-import { AddFormateurComponent } from './add-formateur/add-formateur.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { ListParticipantComponent } from './participant/list-participant.component';
+import { LieuComponent } from './lieu/lieu.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
+import { AuthGuard } from './_auth/auth.guard';
+import { AgencyComponent } from './agency/agency.component';
+import { AddFormateurComponent } from './formateurs/add-formateur/add-formateur.component';
+import { ListFormateursComponent } from './formateurs/list-formateur/list-formateur.component';
+import { ListFormationsComponent } from './formations/list-formation/list-formation.component';
+import { AddFormationComponent } from './formations/add-formation/add-formation.component';
+import { AddLieuComponent } from './add-lieu/add-lieu.component';
+import { LieuHebergementComponent } from './LieuHebergement/lieu-hebergement/lieu-hebergement.component';
+import { AddLieuHebergementComponent } from './LieuHebergement/add-lieu-hebergement/add-lieu-hebergement.component';
+import { ListThemeComponent } from './theme/list-theme/list-theme.component';
+import { AddThemeComponent } from './theme/add-theme/add-theme.component';
+import { AddCabinetComponent } from './cabinetformation/add-cabinet/add-cabinet.component';
+import { ListCabinetComponent } from './cabinetformation/list-cabinet/list-cabinet.component';
+import { AddParticipantComponent } from './add-participant/add-participant.component';
+import { EditFormationComponent } from './formations/edit-formation/edit-formation.component';
+import { EditFormateurComponent } from './formateurs/edit-formateur/edit-formateur.component';
+import { EditLieuComponent } from './edit-lieu/edit-lieu.component';
+import { RegisterComponent } from './register/register.component';
+import { ParticipantService } from './_services/participant.service';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'list-Formation', component: ListFormationsComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'list-Formateur', component: ListFormateursComponent },
-  { path: 'add-formation', component: AddFormationComponent },
-  { path: 'add-formateur', component: AddFormateurComponent },
+  { path: 'add-Formateur', component: AddFormateurComponent },
+  { path: 'side-bar', component: SideBarComponent },
+  { path: 'list-participant', component: ListParticipantComponent },
+  { path: 'add-participant', component: AddParticipantComponent },
+  { path: 'edit-formation/:id', component: EditFormationComponent },
+  { path: 'edit-formateur/:id', component: EditFormateurComponent },
+  { path: 'edit-lieu/:id', component: EditLieuComponent },
+  { path: 'calendar', component: CalendarComponent },
+
+
+  { path: 'register', component: RegisterComponent },
+  { path: 'participant', component: ParticipantService, canActivate: [AuthGuard], data: { roles: ['PARTICIPANT'] } },
+
+
+
+
+  { path: 'lieu', component: LieuComponent },
+  { path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'User', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
+  { path: 'agency', component: AgencyComponent },
+  { path: 'list-Formation', component: ListFormationsComponent },
+  { path: 'add-Formation', component: AddFormationComponent },
+  { path: 'add-lieu', component: AddLieuComponent },
+  { path: 'lieuHebergement', component: LieuHebergementComponent },
+  { path: 'add-lieu-hebergement', component: AddLieuHebergementComponent },
+  { path: 'list-theme', component: ListThemeComponent },
+  { path: 'add-theme', component: AddThemeComponent },
+  { path: 'list-cabinet', component: ListCabinetComponent },
+  { path: 'add-cabinet', component: AddCabinetComponent },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ];
 
 @NgModule({

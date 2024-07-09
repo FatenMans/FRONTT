@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class UserService {
   requestHeader = new HttpHeaders(
     { "No-Auth": "True" }
   )
+  http: any;
 
   constructor(private httpclient: HttpClient,
     private userAuthService: UserAuthService
@@ -47,6 +50,9 @@ export class UserService {
     }
 
     return isMatch; // Return false if no match is found
+  }
+  registerNewUser(user: User): Observable<any> {
+    return this.http.post(`${this.PATH_OF_API}/registerNewUser`, user);
   }
 
 }

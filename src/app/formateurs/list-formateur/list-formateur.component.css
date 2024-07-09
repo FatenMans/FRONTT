@@ -1,0 +1,40 @@
+/* styles.css ou le fichier CSS du composant */
+.btn-custom {
+    background-color: lemonchiffon;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #fffacd;
+    /* une teinte légèrement plus foncée pour le survol */
+    color: #333;
+}
+
+.btn-custom-modifier {
+    background-color: lemonchiffon;
+    /* Couleur de fond pour le bouton Modifier */
+    color: black;
+}
+
+.btn-custom-modifier:hover {
+    background-color: #fffacd;
+    /* Couleur de fond pour le survol */
+}
+
+.btn-custom-supprimer {
+    background-color: lemonchiffon;
+    /* Couleur de fond pour le bouton Supprimer */
+    color: black;
+}
+
+.btn-custom-supprimer:hover {
+    background-color: #fffacd;
+    /* Couleur de fond pour le survol */
+}

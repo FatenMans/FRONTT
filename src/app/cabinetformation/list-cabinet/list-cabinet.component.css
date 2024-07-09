@@ -1,0 +1,31 @@
+/* styles.css ou le fichier CSS du composant */
+.btn-modifier {
+    background-color: lemonchiffon;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.btn-modifier:hover {
+    background-color: #fffacd;
+    /* une teinte légèrement plus foncée pour le survol */
+}
+
+.btn-supprimer {
+    background-color: lemonchiffon;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-supprimer:hover {
+    background-color: #fffacd;
+    /* une teinte légèrement plus foncée pour le survol */
+}

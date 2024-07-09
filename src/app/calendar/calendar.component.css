@@ -1,0 +1,16 @@
+.custom-calendar {
+    width: 100%;
+    /* Ajustez la largeur selon vos préférences */
+    height: 600px;
+    /* Ajustez la hauteur selon vos préférences */
+    margin-bottom: 20px;
+    /* Ajustez les marges selon vos préférences */
+}
+
+.calendar-modal .modal-content {
+    border-radius: 0;
+}
+
+.calendar-modal .modal-body {
+    padding: 20px;
+}

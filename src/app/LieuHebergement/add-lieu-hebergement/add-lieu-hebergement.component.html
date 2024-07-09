@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Form Basic</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                January 2024
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Ajouter un Formateur</h4>
+                    </div>
+                </div>
+                <form [formGroup]="formModel" (ngSubmit)="ajouterLieuheb()">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-lieuheb">Lieuheb</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.lieuheb.errors }" id="input-lieuheb"
+                                placeholder="Lieuheb" formControlName="lieuheb" />
+                            <div *ngIf="submitted && f.lieuheb.errors" class="invalid-feedback">
+                                <div>Le Lieu est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-end">
+                        <div class="col-sm-12 col-md-10">
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

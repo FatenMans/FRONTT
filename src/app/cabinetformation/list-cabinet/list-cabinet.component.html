@@ -1,0 +1,63 @@
+<!-- list-cabinet.component.html -->
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Liste des CabinetFormations</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                Janvier 2024
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Liste des CabinetFormations</h4>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Adresse</th>
+                                <th>Contact</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cabinetFormation of cabinetFormations">
+                                <td>{{ cabinetFormation.adress }}</td>
+                                <td>{{ cabinetFormation.contact }}</td>
+                                <td>{{ cabinetFormation.tel }}</td>
+                                <td>{{ cabinetFormation.email }}</td>
+                                <td>
+                                    <button class="btn btn-primary"
+                                        (click)="openModal(cabinetFormation)">Modifier</button>
+                                    <button class="btn btn-danger"
+                                        (click)="deleteCabinetFormation(cabinetFormation.id)">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

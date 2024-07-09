@@ -1,0 +1,151 @@
+<!-- Import and declare the app-header component in the appropriate module -->
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Form Basic</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                January 2024
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Ajouter un Formateur</h4>
+                    </div>
+                </div>
+                <form [formGroup]="formModel" (ngSubmit)="ajouterFormateur()">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-code">Code</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.code.errors }" id="input-code"
+                                placeholder="Code" formControlName="code" />
+                            <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+                                <div>Le code est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-nom">Nom</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" id="input-nom" placeholder="Nom"
+                                formControlName="nom" />
+                            <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                                <div>Le nom est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-prenom">Prénom</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" id="input-prenom"
+                                placeholder="Prénom" formControlName="prenom" />
+                            <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                                <div>Le prénom est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-cin">CIN</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" id="input-cin" placeholder="CIN"
+                                formControlName="cin" />
+                            <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                                <div>Le CIN est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-matricule">Matricule</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.matricule.errors }" id="input-matricule"
+                                placeholder="Matricule" formControlName="matricule" />
+                            <div *ngIf="submitted && f.matricule.errors" class="invalid-feedback">
+                                <div>Le matricule est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-email">Email</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" id="input-mail"
+                                placeholder="mail" formControlName="mail" />
+                            <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                                <div>Le email est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-tel">Tel</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.tel.errors }" id="input-tel" placeholder="Tel"
+                                formControlName="tel" />
+                            <div *ngIf="submitted && f.tel.errors" class="invalid-feedback">
+                                <div>Le tel est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-montant">Montant</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.montant.errors }" id="input-montant"
+                                placeholder="Montant" formControlName="montant" />
+                            <div *ngIf="submitted && f.montant.errors" class="invalid-feedback">
+                                <div>Le montant est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-type-formateur">Type de
+                            Formateur</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select class="form-control" id="input-type-formateur" formControlName="typeFormateur">
+                                <option value="Interne">Interne</option>
+                                <option value="Externe">Externe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Example file input</label>
+                        <input type="file" class="form-control-file form-control height-auto">
+                    </div>
+                    <div class="form-group row justify-content-end">
+                        <div class="col-sm-12 col-md-10">
+                            <button type="submit" class="btn btn-primary" (click)="ajouterFormateur()">Ajouter</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>

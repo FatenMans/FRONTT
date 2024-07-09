@@ -12,6 +12,7 @@ export class Formateur {
     autorisation?: string;
     typeFormateur: string;
     email: string;
+    id: any;
 
     constructor() {
         this.nom = '';

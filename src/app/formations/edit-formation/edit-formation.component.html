@@ -1,0 +1,70 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <form [formGroup]="FormModel" (ngSubmit)="ModifierFormation()">
+                            <div class="form-group">
+                                <label for="nomFormation">Nom de la formation</label>
+                                <input id="nomFormation" formControlName="nomFormation" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="numGroupe">Numéro du groupe</label>
+                                <input id="numGroupe" formControlName="numGroupe" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="dateDebut">Date de début</label>
+                                <input id="dateDebut" formControlName="dateDebut" class="form-control" type="date" />
+                            </div>
+                            <div class="form-group">
+                                <label for="dateFin">Date de fin</label>
+                                <input id="dateFin" formControlName="dateFin" class="form-control" type="date" />
+                            </div>
+                            <div class="form-group">
+                                <label for="duree">Durée</label>
+                                <input id="duree" formControlName="duree" class="form-control" />
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-2 col-form-label" for="input-type-formation">Type de
+                                    Formation</label>
+                                <div class="col-sm-12 col-md-10">
+                                    <select class="form-control" id="input-type-formation"
+                                        formControlName="typeformation">
+                                        <option value="Intra">InterEntreprise</option>
+                                        <option value="Extra">ExtraEntreprise</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="fraisTotalFormateur">Frais total formateur</label>
+                                <input id="fraisTotalFormateur" formControlName="fraisTotalFormateur"
+                                    class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="formateurId">Formateur</label>
+                                <select id="formateurId" formControlName="formateurId" class="form-control">
+                                    <option *ngFor="let formateur of formateurs" [value]="formateur.id">{{ formateur.nom
+                                        }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="themeId">Theme</label>
+                                <select id="themeId" formControlName="themeId" class="form-control">
+                                    <option *ngFor="let theme of themes " [value]="theme.id">{{ theme.theme
+                                        }}</option>
+                                </select>
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary" (click)="ModifierFormation()">Modifier
+                                Formation</button>
+                        </form>

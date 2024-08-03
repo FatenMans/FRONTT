@@ -1,1 +1,89 @@
-<p>edit-participant works!</p>
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+  <div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>Modifier Participant</h4>
+            </div>
+            <form [formGroup]="formModel" (ngSubmit)="ModifierParticipant()">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input id="nom" formControlName="nom" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input id="prenom" formControlName="prenom" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="lieutravail">Lieu de Travail</label>
+                <input id="lieutravail" formControlName="lieutravail" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" formControlName="email" class="form-control" type="email" />
+              </div>
+              <div class="form-group">
+                <label for="datNais">Date de Naissance</label>
+                <input id="datNais" formControlName="datNais" class="form-control" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="Affectation">Affectation</label>
+                <input id="Affectation" formControlName="Affectation" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="codGrad">Code Grad</label>
+                <input id="codGrad" formControlName="codGrad" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="datEmb">Date d'Embauche</label>
+                <input id="datEmb" formControlName="datEmb" class="form-control" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="fonction">Fonction</label>
+                <input id="fonction" formControlName="fonction" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="salaire">Salaire</label>
+                <input id="salaire" formControlName="salaire" class="form-control" type="number" />
+              </div>
+              <div class="form-group">
+                <label for="sexe">Sexe</label>
+                <input id="sexe" formControlName="sexe" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="hebergementNuite">Hébergement Nuitée</label>
+                <input id="hebergementNuite" formControlName="hebergementNuite" type="checkbox" />
+              </div>
+              <div class="form-group">
+                <label for="Lieuhebergement">Lieuhebergement</label>
+                <select id="Lieuhebergement" formControlName="Lieuheb" class="form-control">
+                    <option *ngFor="let lieux of lieuheb " [value]="lieux.Lieuheb">{{ lieux.lieuheb
+                        }}</option>
+                </select>
+            </div>
+              <div class="form-group">
+                <label for="confirmation">Confirmation</label>
+                <input id="confirmation" formControlName="confirmation" type="checkbox" />
+              </div>
+              <div class="form-group">
+                <label for="agePers">Âge</label>
+                <input id="agePers" formControlName="agePers" class="form-control" type="number" />
+              </div>
+              <div class="form-group">
+                <label for="matricule">Matricule</label>
+                <input id="matricule" formControlName="matricule" class="form-control" type="number" />
+              </div>
+
+              <button type="submit" class="btn btn-primary">Modifier Participant</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

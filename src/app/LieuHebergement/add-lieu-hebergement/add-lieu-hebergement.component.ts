@@ -25,31 +25,31 @@ export class AddLieuHebergementComponent {
 
   get f() { return this.formModel.controls; }
 
+  ngOnInit(): void { }
+
   ajouterLieuheb() {
-    this.submitted = true;
-    console.log(this.lieuheb);
-    if (this.formModel.invalid) {
-      return;
+    console.log(this.formModel.value)
+    if (this.formModel.valid) {
+      const newLieuheb: Lieuheb = {
+        lieuheb: this.formModel.value.lieuheb!,
+        id: 0  // ou toute autre valeur par défaut appropriée
+      };
+
+      this.lieuhebService.createLieuHeb(this.lieuheb).subscribe(
+        response => {
+          console.log('lieuheb ajouté avec succès', response);
+          // Rediriger ou afficher un message de succès
+          Swal.fire({
+            icon: 'success',
+            title: 'lieu ajouté avec succès',
+            showConfirmButton: true,
+          });
+          this.router.navigate(['/lieuHebergement']);
+        },
+        error => {
+          console.error('Erreur lors de l\'ajout du lieuHebergement', error);
+        }
+      );
     }
-    this.lieuhebService.createLieuHeb(this.lieuheb).subscribe((res: Lieuheb) => {
-      console.log(res);
-      console.log("Lieu d'hébergement ajouté avec succès");
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Lieu d\'hébergement ajouté avec succès',
-        showConfirmButton: true,
-      });
-
-      this.router.navigate(['/lieux-hebergement']);
-    }, (err: any) => {
-      console.log(err);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Erreur lors de l\'ajout du lieu d\'hébergement!',
-        showConfirmButton: true,
-      });
-    });
   }
 }

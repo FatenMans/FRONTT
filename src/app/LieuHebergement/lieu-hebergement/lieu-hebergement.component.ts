@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LieuService } from 'src/app/_services/lieu.service';
 import { LieuhebService } from 'src/app/_services/lieuheb.service';
 import { Lieuheb } from 'src/app/models/lieuheb.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lieu-hebergement',
@@ -31,16 +31,42 @@ export class LieuHebergementComponent implements OnInit {
     );
   }
   deleteLieuheb(id: number) {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce thème ?')) {
-      this.lieuhebService.deleteLieuheb(id).subscribe(
-        response => {
-          console.log('lieuheb deleted:', response);
-          this.getLieux(); // Refresh the list after deletion
-        },
-        error => {
-          console.error('Error deleting theme', error);
+    {
+      Swal.fire({
+        title: 'Êtes-vous sûr de vouloir supprimer cette formation?',
+        text: "Vous ne pourrez pas revenir en arrière!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui, supprimez-le!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.lieuhebService.deleteLieuheb(id).subscribe(
+            res => {
+              Swal.fire({
+                icon: 'success',
+                title: 'Formation supprimée avec succès',
+                showConfirmButton: true,
+              });
+              this.getLieux()
+
+            },
+            err => {
+              Swal.fire({
+                icon: 'error',
+                title: "Erreur lors de la suppression de la formation",
+                showConfirmButton: true,
+              });
+            }
+          );
         }
-      );
+      })
+
     }
+
+
+
+
   }
 }

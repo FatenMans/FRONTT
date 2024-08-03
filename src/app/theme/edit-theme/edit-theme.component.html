@@ -1,0 +1,40 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Form</h4>
+                        </div>
+                        <div class="container mt-5">
+                            <h2>Edit Theme</h2>
+                            <form [formGroup]="themeForm" (ngSubmit)="modifierTheme()">
+                                <div class="form-group">
+                                    <label for="codeTheme">Code Theme</label>
+                                    <input type="text" class="form-control" id="codeTheme" formControlName="codeTheme">
+                                </div>
+                                <div class="form-group">
+                                    <label for="theme">Theme</label>
+                                    <input type="text" class="form-control" id="theme" formControlName="theme">
+                                </div>
+                                <div class="form-group">
+                                    <label for="typeThemeIntraInter">Type Theme Intra/Inter</label>
+                                    <input type="text" class="form-control" id="typeThemeIntraInter"
+                                        formControlName="typeThemeIntraInter">
+                                </div>
+                                <div class="form-group">
+                                    <label for="accord">Accord</label>
+                                    <input type="text" class="form-control" id="accord" formControlName="accord">
+                                </div>
+                                <div class="form-group">
+                                    <label for="documents">Documents</label>
+                                    <input type="text" class="form-control" id="documents" formControlName="documents">
+                                </div>
+                                <!-- Add other fields here if necessary -->
+                                <button type="submit" class="btn btn-primary" (click)="modifierTheme()">Modifier
+                                    Formation</button>
+                            </form>
+                        </div>

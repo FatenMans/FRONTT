@@ -17,7 +17,7 @@ export class EditFormationComponent implements OnInit {
   formateurs: any[] = [];
   currentFormation: any;
   themes: any
-
+ formation: any
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,7 +58,9 @@ export class EditFormationComponent implements OnInit {
         this.FormModel.patchValue({
           ...data,
           formateurId: data.formateur ? data.formateur.id : null,
-          themeId: data.theme ? data.theme.id : null
+          themeId: data.theme ? data.theme.id : null,
+          createdBy: data.createdBy // 
+
         });
         console.log(this.FormModel.value)
         console.log(data)
@@ -93,10 +95,19 @@ export class EditFormationComponent implements OnInit {
 
   ModifierFormation(): void {
     if (this.FormModel.valid) {
-      const updatedFormation = this.FormModel.value;
+      const updatedFormation = {
+        ...this.FormModel.value,
+        lastModifiedDate: new Date().toISOString() // Assurez-vous que lastModifiedAt est inclus ici
+      };
+  
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
-        this.formationService.ModifierFormation(parseInt(id), updatedFormation, this.FormModel.value.formateurId, this.FormModel.value.themeId).subscribe({
+        this.formationService.ModifierFormation(
+          parseInt(id),
+          updatedFormation,
+          this.FormModel.value.formateurId,
+          this.FormModel.value.themeId
+        ).subscribe({
           next: (res) => {
             console.log(res);
             Swal.fire({
@@ -104,9 +115,7 @@ export class EditFormationComponent implements OnInit {
               title: 'Formation modifiée avec succès',
               showConfirmButton: true,
             });
-
-
-
+  
             this.router.navigate(['/list-Formation']);
           },
           error: (e) => console.error(e)
@@ -114,4 +123,4 @@ export class EditFormationComponent implements OnInit {
       }
     }
   }
-}
+}  

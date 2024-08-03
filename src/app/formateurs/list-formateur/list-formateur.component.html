@@ -52,6 +52,8 @@
                                 <th>Autorisation</th>
                                 <th>Type Formateur</th>
                                 <th>Email</th>
+                                <th>Date de Modification</th>
+                                <th>Modifié par</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -66,9 +68,12 @@
                                 <td>{{ formateur.montant }}</td>
 
 
+
                                 <td>{{ formateur.autorisation }}</td>
                                 <td>{{ formateur.typeFormateur }}</td>
-                                <td>{{ formateur.email }}</td>
+                                <td>{{ formateur.mail }}</td>
+                                <td>{{ formateur.lastModifiedDate | date: 'short' }}</td>
+                                <td>{{ formateur.lastModifiedBy }}</td>
                                 <td>
                                     <button class="btn-custom btn-custom-modifier"
                                         routerLink="/edit-formateur/{{formateur.id}}">Modifier</button>

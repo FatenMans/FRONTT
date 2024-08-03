@@ -17,6 +17,8 @@ export interface Formation {
     lieuId: number; // ID du lieu
     themeId: number; // ID du thème
     participants: number[]; // Liste des IDs des participants
+    lastModifiedDate?: string;
+    lastModifiedBy?: string;
 }
 
 export class FormationImpl implements Formation {

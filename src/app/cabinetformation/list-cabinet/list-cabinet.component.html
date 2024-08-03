@@ -1,4 +1,6 @@
 <!-- list-cabinet.component.html -->
+<app-header></app-header>
+<app-side-bar></app-side-bar>
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -34,23 +36,30 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Adresse</th>
+                                <th>Nom Cabinet</th>
+                                <th>Lieu</th>
                                 <th>Contact</th>
                                 <th>Téléphone</th>
                                 <th>Email</th>
+                                <th>Date de Modification</th>
+                                <th>Modifié par</th>
+
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let cabinetFormation of cabinetFormations">
-                                <td>{{ cabinetFormation.adress }}</td>
+                                <td>{{ cabinetFormation.nom }}</td>
+                                <td>{{ cabinetFormation.lieu ? cabinetFormation.lieu.lieu : 'Non défini' }}</td>
                                 <td>{{ cabinetFormation.contact }}</td>
                                 <td>{{ cabinetFormation.tel }}</td>
                                 <td>{{ cabinetFormation.email }}</td>
+                                <td>{{ cabinetFormation.lastModifiedDate | date: 'short' }}</td>
+                                <td>{{ cabinetFormation.lastModifiedBy }}</td>
                                 <td>
-                                    <button class="btn btn-primary"
-                                        (click)="openModal(cabinetFormation)">Modifier</button>
-                                    <button class="btn btn-danger"
+                                    <button class="btn-custom btn-custom-modifier"
+                                        routerLink="/edit-cabinet/{{cabinetFormation.id}}">Modifier</button>
+                                    <button class="btn-custom btn-custom-modifier"
                                         (click)="deleteCabinetFormation(cabinetFormation.id)">Supprimer</button>
                                 </td>
                             </tr>

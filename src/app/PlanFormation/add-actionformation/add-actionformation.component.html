@@ -1,0 +1,71 @@
+<!-- components/add-actionformation/add-actionformation.component.html -->
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+  <div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>Ajouter une Action de Formation</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="./home.html">Formation</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ajouter Action Formation</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-20 card-box mb-30">
+        <div class="clearfix mb-20">
+          <div class="pull-left">
+            <h4 class="text-blue h4">Détails de l'Action de Formation</h4>
+          </div>
+        </div>
+        <form [formGroup]="FormModel" (ngSubmit)="ajouterActionformation()">
+          <div class="form-group">
+            <label for="code_action">Code Action</label>
+            <input type="text" id="code_action" formControlName="code_action" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="groupe_N">Groupe N</label>
+            <input type="text" id="groupe_N" formControlName="groupe_N" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="dateDebut">Date Début</label>
+            <input type="date" id="dateDebut" formControlName="dateDebut" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="datefin">Date Fin</label>
+            <input type="date" id="datefin" formControlName="datefin" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="duree">Durée</label>
+            <input type="text" id="duree" formControlName="duree" class="form-control"  />
+          </div>
+          <div class="form-group">
+            <label for="NbreCandidat">Nombre de Candidats</label>
+            <input type="text" id="NbreCandidat" formControlName="NbreCandidat" class="form-control" />
+          </div>
+          
+          <div class="form-group">
+            <label for="themeId">Thème</label>
+            <select id="themeId" formControlName="themeId" class="form-control">
+              <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.theme }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="NbreCandidat">Lieux</label>
+            <input type="text" id="Lieux" formControlName="Lieux" class="form-control" />
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Ajouter Action de Formation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

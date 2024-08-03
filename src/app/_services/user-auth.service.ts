@@ -15,6 +15,9 @@ export class UserAuthService {
   public setToken(jwtToken: string) {
     localStorage.setItem('jwtToken', jwtToken);
   }
+  public setuser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   public getToken(): string | null {
     return localStorage.getItem('jwtToken');

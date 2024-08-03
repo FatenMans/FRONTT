@@ -1,0 +1,43 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Modifier Cabinet</h4>
+                        </div>
+                        <form [formGroup]="FormModel" (ngSubmit)="ModifierCabinet()">
+                            <div class="form-group">
+                                <label for="adress">Adresse</label>
+                                <input id="adress" formControlName="adress" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact</label>
+                                <input id="contact" formControlName="contact" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" formControlName="email" class="form-control" type="email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Téléphone</label>
+                                <input id="tel" formControlName="tel" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="idLieu">Lieu</label>
+                                <select id="idLieu" formControlName="idLieu" class="form-control">
+                                    <option *ngFor="let lieu of lieux" [value]="lieu.id">{{ lieu.lieu }}</option>
+                                </select>
+                            </div>
+                           <button type="submit" class="btn btn-primary" (click)="ModifierCabinet()">Modifier
+                            Formation </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

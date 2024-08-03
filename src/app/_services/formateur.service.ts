@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Formateur } from '../models/formateur.model';
 
@@ -23,8 +23,9 @@ export class FormateurService {
     return this.http.delete(`${this.apiUrl}/formateurs/${id}`);
   }
 
-  ModifierFormateur(id: number, formation: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/formateurs/activate/${id}`, Formateur);
+  ModifierFormateur(id: number, foramteur: any): Observable<any> {
+
+    return this.http.put(`${this.apiUrl}/formateurs/update/${id}`, foramteur);
   }
 
   getFormateurById(id: number): Observable<any> {

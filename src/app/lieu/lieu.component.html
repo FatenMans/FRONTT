@@ -37,6 +37,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Lieu</th>
+                            <th>Date de Modification</th>
+                            <th>Modifié par</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -44,9 +46,11 @@
                         <tr *ngFor="let lieu of lieux">
                             <td>{{ lieu.id }}</td>
                             <td>{{ lieu.lieu }}</td>
+                            <td>{{ lieu.lastModifiedDate | date: 'short' }}</td>
+                            <td>{{ lieu.lastModifiedBy }}</td>
                             <td>
                                 <button class="btn-custom btn-custom-modifier"
-                                    (click)="updateLieu(lieu.id)">Modifier</button>
+                                    routerLink="/edit-lieu/{{lieu.id}}">Modifier</button>
                                 <button class="btn-custom btn-custom-modifier"
                                     (click)="deleteLieu(lieu.id)">Supprimer</button>
                             </td>

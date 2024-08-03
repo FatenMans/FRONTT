@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CabinetFormationService } from 'src/app/_services/cabinet-formation.service';
-import { CabinetFormation } from 'src/app/models/CabinetFormation.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-cabinet',
@@ -9,11 +9,7 @@ import { CabinetFormation } from 'src/app/models/CabinetFormation.model';
   styleUrls: ['./list-cabinet.component.css']
 })
 export class ListCabinetComponent implements OnInit {
-  openModal(_t37: any) {
-    throw new Error('Method not implemented.');
-  }
   cabinetFormations: any[] = [];
-
 
   constructor(private cabinetFormationService: CabinetFormationService, private router: Router) { }
 
@@ -24,28 +20,52 @@ export class ListCabinetComponent implements OnInit {
   private getCabinetFormation() {
     this.cabinetFormationService.getCabinetFormation().subscribe(
       data => {
-        console.log('Cabinet fetched from backend:', data);
+        console.log('CabinetFormation fetched from backend:', data);
         this.cabinetFormations = data;
       },
       error => {
-        console.error('Error fetching cabinet formations', error);
+        console.error('Error fetching CabinetFormations:', error);
+        // Gérer l'erreur comme nécessaire
       }
     );
   }
+
   deleteCabinetFormation(id: number) {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce thème ?')) {
-      this.cabinetFormationService.deleteCabinetFormation(id).subscribe(
-        response => {
-          console.log('CabinetFormation deleted:', response);
-          this.getCabinetFormation(); // Refresh the list after deletion
-        },
-        error => {
-          console.error('Error deleting theme', error);
-        }
-      );
-    }
+    Swal.fire({
+      title: 'Êtes-vous sûr de vouloir supprimer cette Cabinet?',
+      text: "Vous ne pourrez pas revenir en arrière!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimez-le!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.cabinetFormationService.deleteCabinetFormation(id).subscribe(
+          res => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Cabinet supprimée avec succès',
+              showConfirmButton: true,
+            });
+            this.getCabinetFormation()
+
+          },
+          err => {
+            Swal.fire({
+              icon: 'error',
+              title: "Erreur lors de la suppression de la Cabinet",
+              showConfirmButton: true,
+            });
+          }
+        );
+      }
+    })
   }
   updateCabinetFormation(id: number) {
-    alert('Update CabinetFormation with ID: ' + id); // Simple alert instead of navigating to another route
+    alert('Update Cabinet with ID: ' + id); // Simple alert instead of navigating to another route
   }
+
+
+
 }

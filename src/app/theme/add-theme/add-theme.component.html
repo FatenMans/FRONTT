@@ -31,20 +31,57 @@
                         <h4 class="text-blue h4">Ajouter un Thème</h4>
                     </div>
                 </div>
-                <form [formGroup]="formModel" (ngSubmit)="ajouterTheme()">
+                <form [formGroup]="themeForm" (ngSubmit)="ajouterTheme()">
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="input-codeTheme">Code Thème</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-code">codeTheme</label>
                         <div class="col-sm-12 col-md-10">
-                            <input type="text" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.codeTheme.errors }" id="input-codeTheme"
-                                placeholder="Code Thème" formControlName="codeTheme" />
+                            <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.codeTheme.errors }" id="input-code" placeholder="code" formControlName="codeTheme" />
                             <div *ngIf="submitted && f.codeTheme.errors" class="invalid-feedback">
-                                <div>Le code thème est obligatoire</div>
+                                <div>Le code est obligatoire</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Repeat similar blocks for other form fields -->
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-theme">Thème</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.theme.errors }" id="input-theme" placeholder="Thème" formControlName="theme" />
+                            <div *ngIf="submitted && f.theme.errors" class="invalid-feedback">
+                                <div>Le thème est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="select-typeThemeIntraInter">Type Thème Intra/Inter</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeThemeIntraInter.errors }" id="select-typeThemeIntraInter" formControlName="typeThemeIntraInter">
+                                <option value="">Select Type</option>
+                                <option value="Inter">Inter</option>
+                                <option value="Intra">Intra</option>
+                            </select>
+                            <div *ngIf="submitted && f.typeThemeIntraInter.errors" class="invalid-feedback">
+                                <div>Le type thème Intra/Inter est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-accord">Accord</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.accord.errors }" id="input-accord" placeholder="Accord" formControlName="accord" />
+                            <div *ngIf="submitted && f.accord.errors" class="invalid-feedback">
+                                <div>L'accord est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-documents">Documents</label>
+                        <div class="col-sm-12 col-md-10">
+                          <input type="file" class="form-control" id="input-documents" (change)="onFileChange($event)" />
+                        </div>
+                      </div>
 
                     <div class="form-group row justify-content-end">
                         <div class="col-sm-12 col-md-10">

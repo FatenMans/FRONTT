@@ -11,7 +11,7 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Liste des Thèmes</li>
                             </ol>
                         </nav>
@@ -25,10 +25,11 @@
                             <tr>
                                 <th>Code</th>
                                 <th>Thème</th>
-
                                 <th>Type Thème</th>
                                 <th>Accord</th>
                                 <th>Documents</th>
+                                <th>Date de Modification</th>
+                                <th>Modifié par</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -36,16 +37,18 @@
                             <tr *ngFor="let theme of themes">
                                 <td>{{ theme.codeTheme }}</td>
                                 <td>{{ theme.theme }}</td>
-
                                 <td>{{ theme.typeThemeIntraInter }}</td>
                                 <td>{{ theme.accord }}</td>
-
-
-                                <td>{{ theme.documents }}</td>
+                                <td>
+                                    <a *ngIf="theme.documents" [href]="theme.documents" target="_blank">Voir Document</a>
+                                    <span *ngIf="!theme.documents">N/A</span>
+                                </td>
+                                <td>{{ theme.lastModifiedDate | date: 'short' }}</td>
+                                <td>{{ theme.lastModifiedBy }}</td>
                                 <td>
                                     <button class="btn-custom btn-custom-modifier"
-                                        (click)="editTheme(theme.id)">Modifier</button>
-                                    <button class="btn-custom btn-custom-modifier"
+                                        routerLink="/edit-theme/{{theme.id}}">Modifier</button>
+                                    <button class="btn-custom btn-custom-supprimer"
                                         (click)="deleteTheme(theme.id)">Supprimer</button>
                                 </td>
                             </tr>

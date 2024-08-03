@@ -14,11 +14,16 @@ import Swal from 'sweetalert2';
 export class ListFormationsComponent implements OnInit {
   [x: string]: any;
   formations: any[] = [];
+  formation : any
+  isUser: boolean = false;
+  userId: any
 
   constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getFormations();
+    this.isUser = this['authService'].isUserRole(); // Assuming authService has a method to check user role
+    this.userId = this['authService'].getUserId(); // Assu
 
     this['myForm'] = this.fb.group({
       typeFormateur: new FormControl('')
@@ -37,7 +42,11 @@ export class ListFormationsComponent implements OnInit {
       }
     );
   }
-
+  participer(formationId: number): void {
+    this.formationService.addParticipantToFormation(formationId, this.userId).subscribe(() => {
+      alert('Vous avez participé avec succès à la formation.');
+    });
+  }
 
   private getFormations() {
     this.formationService.getFormation().subscribe(

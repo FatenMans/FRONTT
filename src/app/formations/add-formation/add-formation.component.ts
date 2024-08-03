@@ -14,6 +14,7 @@ import { FormateurService } from 'src/app/_services/formateur.service';
   styleUrls: ['./add-formation.component.css']
 })
 export class AddFormationComponent {
+
   formation: any;
   submitted = false;
   themes: any[] = [];
@@ -40,7 +41,7 @@ export class AddFormationComponent {
 
     typeformation: ['', Validators.required],
     formateurId: [, Validators.required],
-    themeId: [, Validators.required],
+    themeId: [],
 
 
   });
@@ -48,9 +49,12 @@ export class AddFormationComponent {
   ngOnInit(): void {
     this.getFormateurs();
     this.loadThemes();
+    this.setupDateChangeListeners();
+
   }
   getFormateurs() {
     this.formateurService.getFormateurs().subscribe((data: any[]) => {
+      console.log('Formateurs data:', data);
       this.formateurs = data;
     }, error => {
       console.error('Error fetching formateurs:', error);
@@ -61,17 +65,49 @@ export class AddFormationComponent {
       this.themes = data;
     });
   }
+  setupDateChangeListeners(): void {
+    this.FormModel.get('dateDebut')!.valueChanges.subscribe(() => this.calculateDuration());
+    this.FormModel.get('datefin')!.valueChanges.subscribe(() => this.calculateDuration());
+  }
+
+  calculateDuration(): void {
+    const dateDebutValue = this.FormModel.get('dateDebut')!.value;
+    const dateFinValue = this.FormModel.get('dateFin')!.value;
+
+    console
+
+    if (dateDebutValue && dateFinValue) {
+      const dateDebut = new Date(dateDebutValue);
+      const dateFin = new Date(dateFinValue);
+
+      if (dateDebut && dateFin && dateFin > dateDebut) {
+        const timeDiff = Math.abs(dateFin.getTime() - dateDebut.getTime());
+        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)).toString() + ' Jr';
+        this.FormModel.get('duree')!.setValue(diffDays);
+      } else {
+        this.FormModel.get('duree')!.setValue('');
+      }
+    }
+  }
 
   get f() { return this.FormModel.controls; }
 
   ajouterFormation() {
     this.submitted = true;
 
+
+    console.log("faten")
+
+    console.log(this.FormModel.value)
+
     if (this.FormModel.invalid) {
       return;
     }
 
+    console.log("faten1")
+
     this.formation = this.FormModel.value;
+
 
     this.formationService.createFormation(this.formation, this.FormModel.value.formateurId!, this.FormModel.value.themeId!).subscribe(
       res => {
@@ -91,5 +127,6 @@ export class AddFormationComponent {
       }
     );
   }
+
 
 }

@@ -13,53 +13,46 @@ import { Lieu } from '../models/lieu.model';
 export class AddLieuComponent {
   lieu: Lieu = { id: 0, lieu: '', formations: [] }; // Initialiser correctement l'objet lieu
   Lieu: any[] = [];
-  // Add a list of formateurs
-  submitted = false
-
+  submitted = false;
+  
   constructor(private router: Router, private lieuService: LieuService, private formbuilder: FormBuilder) { }
 
-
-  formModel = this.formbuilder.group(
-    {
-      lieu: ['', Validators.required],
-
-
-    }
-  )
+  formModel = this.formbuilder.group({
+    lieu: ['', Validators.required],
+  });
 
   get f() { return this.formModel.controls; }
 
+  updateLieuFromForm() {
+    this.lieu.lieu = this.formModel.get('lieu')?.value || '';
+  }
 
   ajouterLieu() {
-    this.submitted = true
-    console.log(this.lieu)
+    this.submitted = true;
+    this.updateLieuFromForm();
+    console.log(this.lieu);
     if (this.formModel.invalid) {
       return;
     }
     this.lieuService.createLieu(this.lieu).subscribe(res => {
-      console.log(res)
+      console.log(res);
       console.log("Lieu ajouté avec succès");
 
       Swal.fire({
         icon: 'success',
-        title: 'Formateur ajouté avec succès',
+        title: 'Lieu ajouté avec succès',
         showConfirmButton: true,
-
       });
 
       this.router.navigate(['/lieu']);
     }, err => {
-      console.log(err)
+      console.log(err);
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Erreur lors de l\'ajout du formateur!',
+        text: 'Erreur lors de l\'ajout du lieu!',
         showConfirmButton: true,
       });
-    })
-
+    });
   }
 }
-
-
-

@@ -40,6 +40,13 @@ import { ArchwizardModule } from 'angular-archwizard';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AddFormationComponent } from './formations/add-formation/add-formation.component';
+import { EditThemeComponent } from './theme/edit-theme/edit-theme.component';
+import { EditCabinetComponent } from './cabinetformation/edit-cabinet/edit-cabinet.component';
+import { ListActionformationComponent } from './PlanFormation/list-actionformation/list-actionformation.component';
+import { AddActionFormationComponent } from './PlanFormation/add-actionformation/add-actionformation.component';
+import { EvalComponent } from './eval/eval.component';
+import { DemandeComponent } from './demande/demande.component';
+import { ListDemandeComponent } from './list-demande/list-demande.component';
 
 
 @NgModule({
@@ -75,7 +82,18 @@ import { AddFormationComponent } from './formations/add-formation/add-formation.
     EditFormateurComponent,
     EditLieuComponent,
     RegisterComponent,
-    CalendarComponent
+    CalendarComponent,
+    EditThemeComponent,
+    EditCabinetComponent,
+    ListActionformationComponent,
+    AddActionFormationComponent,
+    EvalComponent,
+DemandeComponent,
+ListDemandeComponent    
+    
+   
+    
+   
 
 
 

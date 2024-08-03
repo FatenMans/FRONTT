@@ -13,6 +13,8 @@ export class Formateur {
     typeFormateur: string;
     email: string;
     id: any;
+    lastModifiedDate?: string;
+    lastModifiedBy?: string;
 
     constructor() {
         this.nom = '';

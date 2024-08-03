@@ -4,4 +4,7 @@ export interface CabinetFormation {
     contact: string;
     tel: string;
     email: string;
+    idlieu: number;
+    lastModifiedDate?: string;
+    lastModifiedBy?: string;
 }

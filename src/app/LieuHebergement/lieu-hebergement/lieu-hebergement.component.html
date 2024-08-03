@@ -40,6 +40,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Lieuheb</th>
+                            <th>Date de Modification</th>
+                            <th>Modifié par</th>
+
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -47,6 +50,8 @@
                         <tr *ngFor="let lieu of lieux">
                             <td>{{ lieu.id }}</td>
                             <td>{{ lieu.lieuheb }}</td>
+                            <td>{{ lieu.lastModifiedDate | date: 'short' }}</td>
+                            <td>{{ lieu.lastModifiedBy }}</td>
                             <td>
 
                                 <button class="btn-custom btn-custom-modifier"

@@ -30,7 +30,9 @@ export class FormationService {
   ModifierFormation(id: number, formation: any, idFormateur: number, idTheme: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/formations/${id}/${idFormateur}/${idTheme}`, formation);
   }
-
+  addParticipantToFormation(formationId: number, participantId: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/${formationId}/participants/${participantId}`, {});
+  }
 
   getFormationById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/formations/${id}`);
@@ -40,7 +42,6 @@ export class FormationService {
     return this.http.get<Formation[]>(`${this.apiUrl}/participant`);
   }
 }
-
 
 
 

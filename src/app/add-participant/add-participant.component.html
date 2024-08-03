@@ -1,5 +1,5 @@
-<app-header></app-header>
-<app-side-bar></app-side-bar>
+<!-- <app-header></app-header> -->
+<!-- <app-side-bar></app-side-bar> -->
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -7,27 +7,20 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Ajouter un Participant</h4>
+                            <h4>Register</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Add Participant</li>
+                                <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Register</li>
                             </ol>
                         </nav>
-                    </div>
-                    <div class="col-md-6 col-sm-12 text-right">
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                January 2024
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="pd-20 card-box mb-30">
-
-                <form [formGroup]="participantForm" (ngSubmit)="ajouterParticipant()">
+                <!-- Ajout de *ngIf sur le formulaire -->
+                <form [formGroup]="formModel" (ngSubmit)="ajouterParticipant()">
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="nom">Nom</label>
                         <div class="col-sm-12 col-md-10">
@@ -41,9 +34,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="type">Type</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="password">Password</label>
                         <div class="col-sm-12 col-md-10">
-                            <input type="text" class="form-control" id="type" formControlName="type" />
+                            <input type="password" class="form-control" id="password" formControlName="password" />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -64,7 +57,6 @@
                             <input type="date" class="form-control" id="datNais" formControlName="datNais" />
                         </div>
                     </div>
-                    <!-- Ajoutez les autres champs de la même manière -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="Affectation">Affectation</label>
                         <div class="col-sm-12 col-md-10">
@@ -89,19 +81,27 @@
                             <input type="text" class="form-control" id="fonction" formControlName="fonction" />
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="sexe">Sexe</label>
                         <div class="col-sm-12 col-md-10">
                             <input type="text" class="form-control" id="sexe" formControlName="sexe" />
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="hebergementNuite">Hébergement
                             Nuité</label>
                         <div class="col-sm-12 col-md-10">
                             <input type="text" class="form-control" id="hebergementNuite"
                                 formControlName="hebergementNuite" />
+                        </div>
+                    </div> -->
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="lieuHebergementId">Lieu
+                            d'Hébergement</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select formControlName="lieuHebergementId" class="form-control" id="lieuHebergementId">
+                                <option *ngFor="let lieu of lieuheb" [value]="lieu.id">{{ lieu.lieuheb }}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -122,12 +122,7 @@
                             <input type="text" class="form-control" id="matricule" formControlName="matricule" />
                         </div>
                     </div>
-                    <!-- Ajoutez d'autres champs ici si nécessaire -->
-                    <div class="form-group row">
-                        <div class="col-sm-12 col-md-10">
-                            <button type="submit" class="btn btn-primary">Ajouter Participant</button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
                 </form>
             </div>
         </div>

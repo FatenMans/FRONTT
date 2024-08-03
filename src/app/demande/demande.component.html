@@ -1,0 +1,24 @@
+<app-header>
+</app-header>
+<app-side-bar></app-side-bar>
+<form [formGroup]="FormModel" (ngSubmit)="ajouterDemande()">
+  <div class="form-group">
+    <label for="participantId">Participant</label>
+    <select id="participantId" formControlName="participantId" class="form-control">
+      <option *ngFor="let participant of participants" [value]="participant.id">
+        {{ participant.nom }}
+      </option>
+    </select>
+    <div *ngIf="f.participantId.errors && f.participantId.touched" class="text-danger">
+      Participant est requis.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="dateDemande">Date de Demande</label>
+    <input type="date" id="dateDemande" formControlName="dateDemande" class="form-control" />
+    <div *ngIf="f.dateDemande.errors && f.dateDemande.touched" class="text-danger">
+      Date de demande est requise.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Ajouter Demande</button>
+</form>

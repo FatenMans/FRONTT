@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+
   ngOnInit(): void {
     this.getRole()
   }
@@ -76,7 +77,30 @@ export class SideBarComponent implements OnInit {
       list!.style.display = "none";
     }
   }
-
+  togglePlanFormation() {
+    let list = document.getElementById("Plan formation")
+    if (list!.style.display === "none") {
+      list!.style.display = "block";
+    } else {
+      list!.style.display = "none";
+    }
+  }
+  toggleEval() {
+    let list = document.getElementById("Eval")
+    if (list!.style.display === "none") {
+      list!.style.display = "block";
+    } else {
+      list!.style.display = "none";
+    }
+  }
+  toggleDemande() {
+    let list = document.getElementById("Demande")
+    if (list!.style.display === "none") {
+      list!.style.display = "block";
+    } else {
+      list!.style.display = "none";
+    }
+  }
   getRole() {
     this.role = JSON.parse(localStorage.getItem("roles")!)
     console.log(this.role)

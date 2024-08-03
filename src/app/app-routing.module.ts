@@ -28,6 +28,13 @@ import { EditLieuComponent } from './edit-lieu/edit-lieu.component';
 import { RegisterComponent } from './register/register.component';
 import { ParticipantService } from './_services/participant.service';
 import { CalendarComponent } from './calendar/calendar.component';
+import { EditThemeComponent } from './theme/edit-theme/edit-theme.component';
+import { EditCabinetComponent } from './cabinetformation/edit-cabinet/edit-cabinet.component';
+import { ListActionformationComponent } from './PlanFormation/list-actionformation/list-actionformation.component';
+import { AddActionFormationComponent } from './PlanFormation/add-actionformation/add-actionformation.component';
+import { EvalComponent } from './eval/eval.component';
+import { DemandeComponent } from './demande/demande.component';
+import { ListDemandeComponent } from './list-demande/list-demande.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,14 +50,14 @@ const routes: Routes = [
   { path: 'edit-formateur/:id', component: EditFormateurComponent },
   { path: 'edit-lieu/:id', component: EditLieuComponent },
   { path: 'calendar', component: CalendarComponent },
-
-
+  
+  { path: 'edit-theme/:id', component: EditThemeComponent },
+  { path: 'edit-cabinet/:id', component: EditCabinetComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'participant', component: ParticipantService, canActivate: [AuthGuard], data: { roles: ['PARTICIPANT'] } },
-
-
-
-
+  { path: 'add-actionformation', component: AddActionFormationComponent },
+  { path: 'eval', component: EvalComponent },
+  { path: 'list-actionformation', component: ListActionformationComponent },
   { path: 'lieu', component: LieuComponent },
   { path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'User', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
@@ -64,7 +71,12 @@ const routes: Routes = [
   { path: 'add-theme', component: AddThemeComponent },
   { path: 'list-cabinet', component: ListCabinetComponent },
   { path: 'add-cabinet', component: AddCabinetComponent },
+  { path: 'demande', component: DemandeComponent},
+  { path: 'list-demande', component: ListDemandeComponent},
+
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
+ 
+
 
 
 

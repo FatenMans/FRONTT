@@ -11,26 +11,17 @@
     <div class="menu-block customscroll">
         <div class="sidebar-menu">
             <ul id="accordion-menu">
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a routerLink="/home">Home</a></li>
-                    </ul>
-                </li>
+
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleFormateur()">
                         <span class="micon dw dw-edit2"></span><span class="mtext">Formateurs</span>
                     </a>
                     <ul id="Formateur" class="submenu">
-                        <li><a routerLink="/list-Formateur" routerLinkActive="active">List
-                                Formateur</a></li>
-                        <li><a routerLink="/add-Formateur" routerLinkActive="active">Add
-                                Formateur</a></li>
+                        <li><a routerLink="/list-Formateur" routerLinkActive="active">List Formateur</a></li>
+                        <li><a routerLink="/add-Formateur" routerLinkActive="active">Add Formateur</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" *ngIf="role== 'Admin'">
+                <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleFormations()">
                         <span class="micon dw dw-library"></span><span class="mtext">Formations</span>
                     </a>
@@ -39,9 +30,8 @@
                         <li><a routerLink="/add-Formation">Add Formation</a></li>
                     </ul>
                 </li>
-
-                <li class="dropdown" (click)="toggleTheme()">
-                    <a class="dropdown-toggle" *ngIf="role=='Admin'">
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleTheme()">
                         <span class="micon dw dw-paint-brush"></span><span class="mtext">Themes</span>
                     </a>
                     <ul class="submenu" id="Theme">
@@ -49,8 +39,8 @@
                         <li><a routerLink="/add-theme" routerLinkActive="active">Add Theme</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" (click)="toggleCabinet()" *ngIf="role=='Admin'">
-                    <a class="dropdown-toggle">
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleCabinet()">
                         <span class="micon dw dw-apartment"></span><span class="mtext">Cabinet</span>
                     </a>
                     <ul class="submenu" id="Cabinet">
@@ -63,33 +53,61 @@
                         <span class="micon dw dw-calendar1"></span><span class="mtext">Calendar</span>
                     </a>
                 </li>
-                <li class="dropdown" (click)="toggleParticipant()" *ngIf="role=='Admin'">
-                    <a class="dropdown-toggle">
-                        <span class="micon dw dw-apartment"></span><span class="mtext"> Participant</span>
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleParticipant()">
+                        <span class="micon dw dw-apartment"></span><span class="mtext">Participant</span>
                     </a>
                     <ul class="submenu" id="Participant">
                         <li><a routerLink="/list-participant">List participant</a></li>
                         <li><a routerLink="/add-participant">Add participant</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" (click)="toggleLieu()" *ngIf="role=='Admin'">
-                    <a class="dropdown-toggle">
-                        <span class="micon dw dw-apartment"></span><span class="mtext"> Lieu</span>
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleLieu()">
+                        <span class="micon dw dw-apartment"></span><span class="mtext">Lieu</span>
                     </a>
                     <ul class="submenu" id="Lieu">
-                        <li><a routerLink="/lieu"> lieu</a></li>
-                        <li><a routerLink="/add-lieu">Add lieu</a></li>
+                        <li><a routerLink="/lieu">Lieu</a></li>
+                        <li><a routerLink="/add-lieu">Add Lieu</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" (click)="toggleLieuHebergement()" *ngIf="role=='User'">
-                    <a class="dropdown-toggle">
-                        <span class="micon dw dw-apartment"></span><span class="mtext"> Lieu Hebergement</span>
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="togglePlanFormation()">
+                        <span class="micon dw dw-library"></span><span class="mtext">Plan Formation</span>
+                    </a>
+                    <ul id="planFormation" class="submenu" id="Plan formation">
+                        <li><a routerLink="/list-actionformation">List Action Formation</a></li>
+                        <li><a routerLink="/add-actionformation">Add Action Formation</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleEval()">
+                        <span class="micon dw dw-library"></span><span class="mtext">Eval</span>
+                    </a>
+                    <ul id="planFormation" class="submenu" id="Eval">
+                        <li><a routerLink="/eval">Evaluation</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleLieuHebergement()">
+                        <span class="micon dw dw-apartment"></span><span class="mtext">Lieu Hebergement</span>
                     </a>
                     <ul class="submenu" id="LieuHebergement">
-                        <li><a routerLink="/lieuHebergement"> lieu</a></li>
-                        <li><a routerLink="/add-lieu-hebergement">Add lieu</a></li>
+                        <li><a routerLink="/lieuHebergement">Lieu</a></li>
+                        <li><a routerLink="/add-lieu-hebergement">Add Lieu</a></li>
                     </ul>
                 </li>
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleDemande()">
+                        <span class="micon dw dw-apartment"></span><span class="mtext"> Demande</span>
+                    </a>
+                    <ul class="submenu" id="Demande">
+                        <li><a routerLink="/list-demande"> List-Demande</a></li>
+                        <li><a routerLink="/demande">Add Demande</a></li>
+                    </ul>
+                </li>
+
                 <!-- Other menu items -->
             </ul>
         </div>

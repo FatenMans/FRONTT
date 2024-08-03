@@ -1,0 +1,67 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { DemandeService } from '../_services/demande.service';
+import Swal from 'sweetalert2';
+
+@Component({
+  selector: 'app-list-demande',
+  templateUrl: './list-demande.component.html',
+  styleUrls: ['./list-demande.component.css']
+})
+
+export class ListDemandeComponent implements OnInit {
+  demandes: any[] = []; // Assurez-vous que ce type correspond à votre modèle de données
+  
+  constructor(
+    private demandeService: DemandeService,
+    private formBuilder: FormBuilder
+  ) { }
+  
+  ngOnInit(): void {
+    this.getAlldemande();
+  }
+
+  getAlldemande() {
+    this.demandeService.getAllDemandes().subscribe(
+      data => {
+        console.log('Demandes fetched from backend:', data);
+        this.demandes = data;
+      },
+      err => {
+        console.error('Error fetching demandes', err);
+      }
+    );
+  }
+
+  acceptDemande(id: number) {
+    Swal.fire({
+      title: 'Êtes-vous sûr de vouloir accepter cette demande?',
+      text: "Cette action ne peut pas être annulée!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, acceptez!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.demandeService.acceptDemande(id).subscribe(
+          () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Demande acceptée avec succès',
+              showConfirmButton: true,
+            });
+            this.getAlldemande(); // Réactualiser la liste des demandes
+          },
+          err => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erreur lors de l\'acceptation de la demande',
+              showConfirmButton: true,
+            });
+          }
+        );
+      }
+    });
+  }
+}

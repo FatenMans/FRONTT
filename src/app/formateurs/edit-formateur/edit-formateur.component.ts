@@ -33,8 +33,8 @@ export class EditFormateurComponent implements OnInit {
       cin: ['', Validators.required],
       matricule: ['', Validators.required],
       tel: ['', Validators.required],
+      montant: [, Validators.required],
       autorisation: ['', Validators.required],
-      montant: ['', Validators.required],
       typeFormateur: ['', Validators.required],
     });
 
@@ -62,9 +62,13 @@ export class EditFormateurComponent implements OnInit {
       return;
     }
 
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.params["id"]
     if (id) {
-      this.formateurService.ModifierFormateur(parseInt(id), this.formModel.value).subscribe({
+      // Converting the form values to JSON before sending
+      const formateurData = this.formModel.value;
+      this.formModel.value.montant = parseInt(this.formModel.value.montant)
+      console.log(formateurData)
+      this.formateurService.ModifierFormateur(id, formateurData).subscribe({
         next: (res) => {
           console.log(res);
           Swal.fire({
@@ -77,8 +81,15 @@ export class EditFormateurComponent implements OnInit {
 
           this.router.navigate(['/list-Formateur']);
         },
-        error: (e) => console.error(e)
+        error: (e) => {
+          console.error(e);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Erreur lors de la modification du formateur!',
+          });
+        }
       });
     }
   }
-}
+}  

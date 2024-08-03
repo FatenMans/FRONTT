@@ -16,6 +16,14 @@ export class LieuService {
     return this.http.get<Lieu[]>(this.apiUrl + '/lieux/all');
   }
 
+  getAllLieux(): Observable<Lieu[]> {
+    return this.http.get<Lieu[]>(`${this.apiUrl}/lieux/all`);
+  }
+
+  ModifierLieu(id: number, lieu: Lieu): Observable<any> {
+    return this.http.put(`${this.apiUrl}/lieux/${id}`, lieu);
+  }
+
   createLieu(lieux: Lieu): Observable<Lieu> {
     return this.http.post<Lieu>(this.apiUrl + '/lieux/create', lieux);
   }
@@ -25,12 +33,11 @@ export class LieuService {
       data => this.lieuSubject.next(data)
     );
   }
+
   deleteLieu(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/lieux/${id}`);
   }
-  ModifierLieu(id: number, formateurs: any) {
-    return this.http.put(`${this.apiUrl}/lieux/${id}`, this.loadLieux);
-  }
+
   getLieuById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/lieux/${id}`);
   }

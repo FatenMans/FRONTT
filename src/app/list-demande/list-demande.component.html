@@ -29,16 +29,23 @@
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Name</th>
+                <th>Fonction</th>
+                <th>Lieu</th>
                 <th>Date Demande</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let demande of demandes">
-                <td>{{ demande.id.participant.nom }}</td>
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.participant.nom }}</td>
+                <td>{{ demande.participant.fonction }}</td>
+                <td>{{ demande.participant.lieutravail }}</td>
                 <td>{{ demande.dateDemande | date: 'short' }}</td>
                 <td>
-                  <button class="btn-custom btn-custom-modifier" (click)="acceptDemande(demande.id)">Accepter</button>
+                  <button class="btn-custom btn-custom-accepter" (click)="acceptDemande(demande.id)">Accepter</button>
+                  <button class="btn-custom btn-custom-refuser" (click)="refuserDemande(demande.id)">Refuser</button>
                 </td>
               </tr>
             </tbody>

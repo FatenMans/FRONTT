@@ -7,6 +7,8 @@ import { FormationService } from 'src/app/_services/formation.service';
 import { ThemeService } from 'src/app/_services/theme.service';
 import { Theme } from 'src/app/models/theme.model';
 import { FormateurService } from 'src/app/_services/formateur.service';
+import { Participant } from 'src/app/models/participant.model';
+import { ParticipantService } from 'src/app/_services/participant.service';
 
 @Component({
   selector: 'app-add-formation',
@@ -27,6 +29,7 @@ export class AddFormationComponent {
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
     private formateurService: FormateurService,
+    private participantService: ParticipantService,
 
 
   ) { }
@@ -50,8 +53,9 @@ export class AddFormationComponent {
     this.getFormateurs();
     this.loadThemes();
     this.setupDateChangeListeners();
-
-  }
+   
+    }
+ 
   getFormateurs() {
     this.formateurService.getFormateurs().subscribe((data: any[]) => {
       console.log('Formateurs data:', data);

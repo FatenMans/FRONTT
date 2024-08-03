@@ -30,11 +30,14 @@ export class DemandeService {
   }
 
   getAllDemandes(): Observable<Demande[]> {
-    return this.http.get<Demande[]>(this.apiUrl);
+    return this.http.get<Demande[]>(`${this.apiUrl}/all`);
   }
 
   acceptDemande(id: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/accept/${id}`, {});
+  }
+  refuserDemande(id: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/refuser/${id}`, {});
   }
 }
 

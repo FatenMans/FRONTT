@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { FormationService } from 'src/app/_services/formation.service';
 import Swal from 'sweetalert2';
+import { HttpParams } from '@angular/common/http';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class ListFormationsComponent implements OnInit {
   formations: any[] = [];
   formation : any
   isUser: boolean = false;
-  userId: any
+  userId: any;
+  participantnom: any;
 
   constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder) { }
 
@@ -43,10 +45,42 @@ export class ListFormationsComponent implements OnInit {
     );
   }
   participer(formationId: number): void {
-    this.formationService.addParticipantToFormation(formationId, this.userId).subscribe(() => {
-      alert('Vous avez participé avec succès à la formation.');
-    });
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const nom = user?.userName;  // Ajouter une vérification pour éviter les erreurs si 'user' est null
+
+
+    // Préparer les paramètres de la requête
+
+    if (nom) {
+      this.formationService.addParticipantToFormation(formationId, this.participantnom).subscribe(
+        () => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Succès',
+            text: 'Vous avez participé avec succès à la formation.',
+            confirmButtonText: 'OK'
+          });
+        },
+        error => {
+          console.error('Erreur lors de l\'ajout du participant à la formation:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue. Veuillez réessayer.',
+            confirmButtonText: 'OK'
+          });
+        }
+      );
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Avertissement',
+        text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
+        confirmButtonText: 'OK'
+      });
+    }
   }
+  
 
   private getFormations() {
     this.formationService.getFormation().subscribe(

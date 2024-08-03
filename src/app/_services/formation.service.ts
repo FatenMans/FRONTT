@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Formation } from '../models/formation.model';
 
@@ -30,8 +30,17 @@ export class FormationService {
   ModifierFormation(id: number, formation: any, idFormateur: number, idTheme: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/formations/${id}/${idFormateur}/${idTheme}`, formation);
   }
-  addParticipantToFormation(formationId: number, participantId: number): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/${formationId}/participants/${participantId}`, {});
+  addParticipantToFormation(formationId: number, participantnom: String): Observable<void> {
+
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const nom = user?.userName;  // Ajouter une vérification pour éviter les erreurs si 'user' est null
+
+
+
+    // Préparer les paramètres de la requête
+    const params = new HttpParams().set('nom', nom);
+
+    return this.http.post<void>(`${this.apiUrl}/formations/${formationId}/participants/${participantnom}`, {params});
   }
 
   getFormationById(id: number): Observable<any> {

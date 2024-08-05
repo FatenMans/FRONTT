@@ -107,7 +107,15 @@
                         <li><a routerLink="/demande">Add Demande</a></li>
                     </ul>
                 </li>
-
+                <li class="dropdown" *ngIf="role=='Admin'">
+                    <a class="dropdown-toggle" (click)="toggleEnrolle()">
+                        <span class="micon dw dw-apartment"></span><span class="mtext"> enrolled-formations</span>
+                    </a>
+                    <ul class="submenu" id="enrolled-formations">
+                        <li><a routerLink="/enrolled-formations">Formations Enrôlées</a></li>
+                        
+                    </ul>
+                </li>
                 <!-- Other menu items -->
             </ul>
         </div>

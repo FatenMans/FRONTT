@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { DemandeService } from '../_services/demande.service';
 import Swal from 'sweetalert2';
 
@@ -8,17 +7,11 @@ import Swal from 'sweetalert2';
   templateUrl: './list-demande.component.html',
   styleUrls: ['./list-demande.component.css']
 })
-
 export class ListDemandeComponent implements OnInit {
-
-
   demandes: any[] = []; // Assurez-vous que ce type correspond à votre modèle de données
-  
-  constructor(
-    private demandeService: DemandeService,
-    private formBuilder: FormBuilder
-  ) { }
-  
+
+  constructor(private demandeService: DemandeService) { }
+
   ngOnInit(): void {
     this.getAlldemande();
   }
@@ -34,7 +27,7 @@ export class ListDemandeComponent implements OnInit {
       }
     );
   }
-  
+
   refuserDemande(id: number): void {
     Swal.fire({
       title: 'Êtes-vous sûr de vouloir refuser cette demande?',
@@ -65,7 +58,6 @@ export class ListDemandeComponent implements OnInit {
       }
     });
   }
-
 
   acceptDemande(id: number) {
     Swal.fire({

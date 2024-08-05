@@ -48,8 +48,8 @@
             <input type="text" id="duree" formControlName="duree" class="form-control"  />
           </div>
           <div class="form-group">
-            <label for="NbreCandidat">Nombre de Candidats</label>
-            <input type="text" id="NbreCandidat" formControlName="NbreCandidat" class="form-control" />
+            <label for="nbreCandidat">Nombre de Candidats</label>
+            <input type="text" id="nbreCandidat" formControlName="nbreCandidat" class="form-control" />
           </div>
           
           <div class="form-group">
@@ -61,7 +61,7 @@
           <div class="form-group">
             <label for="lieuId">Lieu</label>
             <select id="lieuId" formControlName="lieuId" class="form-control">
-              <option *ngFor="let lieu of lieux" [value]="lieu.id">{{ lieu.lieux }}</option>
+              <option *ngFor="let lieu of lieux" [value]="lieu.id">{{ lieu.lieu }}</option>
             </select>
           </div>
           

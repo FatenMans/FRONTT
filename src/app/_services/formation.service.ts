@@ -30,26 +30,18 @@ export class FormationService {
   ModifierFormation(id: number, formation: any, idFormateur: number, idTheme: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/formations/${id}/${idFormateur}/${idTheme}`, formation);
   }
-  addParticipantToFormation(formationId: number, participantnom: String): Observable<void> {
-
-    const user = JSON.parse(localStorage.getItem('user')!);
-    const nom = user?.userName;  // Ajouter une vérification pour éviter les erreurs si 'user' est null
-
-
-
-    // Préparer les paramètres de la requête
-    const params = new HttpParams().set('nom', nom);
-
-    return this.http.post<void>(`${this.apiUrl}/formations/${formationId}/participants/${participantnom}`, {params});
+  addParticipantToFormation(formationId: number, participantnom: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/formations/${formationId}/participants/${participantnom}`, {  });
   }
+  
 
   getFormationById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/formations/${id}`);
   }
 
-  getFormationsByParticipant(participantId: number): Observable<Formation[]> {
-    return this.http.get<Formation[]>(`${this.apiUrl}/participant`);
-  }
+  getFormationsByParticipant(id: number): Observable<Formation[]> {
+    return this.http.get<Formation[]>(`${this.apiUrl}/formations/by-participant/${id}`);
+}
 }
 
 

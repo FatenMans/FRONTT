@@ -46,41 +46,39 @@ export class ListFormationsComponent implements OnInit {
   }
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
-    const nom = user?.userName;  // Ajouter une vérification pour éviter les erreurs si 'user' est null
+    console.log(user)
+    const participant = { nom: user?.userName };
 
+    if (participant.nom) {
+        this.formationService.addParticipantToFormation(formationId, participant.nom).subscribe(
 
-    // Préparer les paramètres de la requête
-
-    if (nom) {
-      this.formationService.addParticipantToFormation(formationId, this.participantnom).subscribe(
-        () => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Succès',
-            text: 'Vous avez participé avec succès à la formation.',
-            confirmButtonText: 'OK'
-          });
-        },
-        error => {
-          console.error('Erreur lors de l\'ajout du participant à la formation:', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Erreur',
-            text: 'Une erreur est survenue. Veuillez réessayer.',
-            confirmButtonText: 'OK'
-          });
-        }
-      );
+            () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Succès',
+                    text: 'Vous avez participé avec succès à la formation.',
+                    confirmButtonText: 'OK'
+                });
+            },
+            error => {
+                console.error('Erreur lors de l\'ajout du participant à la formation:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    text: 'Une erreur est survenue. Veuillez réessayer.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        );
     } else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Avertissement',
-        text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
-        confirmButtonText: 'OK'
-      });
+        Swal.fire({
+            icon: 'warning',
+            title: 'Avertissement',
+            text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
+            confirmButtonText: 'OK'
+        });
     }
   }
-  
 
   private getFormations() {
     this.formationService.getFormation().subscribe(

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LieuService } from 'src/app/_services/lieu.service';
 import { PlanFormationService } from 'src/app/_services/planformation.service';
 import { ThemeService } from 'src/app/_services/theme.service';
@@ -10,34 +10,35 @@ import Swal from 'sweetalert2';
   templateUrl: './list-actionformation.component.html',
   styleUrls: ['./list-actionformation.component.css']
 })
-export class ListActionformationComponent {
+export class ListActionformationComponent implements OnInit {
   planFormations: PlanFormation[] = [];
-themes: any
-lieu: any
+  themes: any;
+  lieu: any;
+
   constructor(private planformationService: PlanFormationService, private themeService: ThemeService, 
     private lieuService: LieuService) { }
 
   ngOnInit(): void {
     this.planformationService.getAllPlanFormations().subscribe(data => {
       this.planFormations = data;
+      console.log(this.planFormations); // Debugging line to check the data structure
     });
-    
   }
+
   private getThemes() {
     this.themeService.getThemes().subscribe(
       data => {
-        console.log(data)
-        console.log('Theme fetched from backend:', data);
         this.themes = data;
-      },
-
+        console.log('Theme fetched from backend:', data);
+      }
     );
   }
+
   private getLieux() {
-    this.lieuService.getLieu().subscribe(
+    this.lieuService.getAllLieux().subscribe(
       data => {
-        console.log('Lieux fetched from backend:', data);
         this.lieu = data;
+        console.log('Lieux fetched from backend:', data);
       },
       error => {
         console.error('There was an error!', error);
@@ -63,7 +64,7 @@ lieu: any
               title: 'Action supprimée avec succès',
               showConfirmButton: true,
             });
-            this.getLieux();
+            this.ngOnInit(); // Refresh the list after deletion
           },
           err => {
             Swal.fire({

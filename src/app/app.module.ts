@@ -47,6 +47,7 @@ import { AddActionFormationComponent } from './PlanFormation/add-actionformation
 import { EvalComponent } from './eval/eval.component';
 import { DemandeComponent } from './demande/demande.component';
 import { ListDemandeComponent } from './list-demande/list-demande.component';
+import { EnrolledFormationsComponent } from './enrolled-formations/enrolled-formations.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { ListDemandeComponent } from './list-demande/list-demande.component';
     AddActionFormationComponent,
     EvalComponent,
 DemandeComponent,
-ListDemandeComponent    
+ListDemandeComponent,
+EnrolledFormationsComponent    
     
    
     

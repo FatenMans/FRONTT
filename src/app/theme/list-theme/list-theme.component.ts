@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ThemeService } from 'src/app/_services/theme.service';
 import { Theme } from 'src/app/models/theme.model';
 import Swal from 'sweetalert2';
@@ -9,17 +10,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-theme.component.css']
 })
 export class ListThemeComponent implements OnInit {
-  [x: string]: any;
   themes: Theme[] = [];
 
-  router: any;
-
-  constructor(private themeService: ThemeService) { }
+  constructor(private themeService: ThemeService, private router: Router) {}
 
   ngOnInit(): void {
     this.getThemes();
-
-
   }
 
   private getThemes() {
@@ -32,13 +28,10 @@ export class ListThemeComponent implements OnInit {
       }
     );
   }
-  editTheme(id: number) {
-    this.router.navigate(['/edit-theme', id]);
-  }
 
   deleteTheme(id: number) {
     Swal.fire({
-      title: 'Êtes-vous sûr de vouloir supprimer cette theme?',
+      title: 'Êtes-vous sûr de vouloir supprimer ce thème?',
       text: "Vous ne pourrez pas revenir en arrière!",
       icon: 'warning',
       showCancelButton: true,
@@ -48,30 +41,27 @@ export class ListThemeComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.themeService.deleteTheme(id).subscribe(
-          res => {
+          () => {
             Swal.fire({
               icon: 'success',
               title: 'Theme supprimée avec succès',
-              showConfirmButton: true,
+              showConfirmButton: true
             });
-            this.getThemes()
-
+            this.getThemes();
           },
           err => {
             Swal.fire({
               icon: 'error',
-              title: "Erreur lors de la suppression de la theme",
-              showConfirmButton: true,
+              title: "Erreur lors de la suppression du thème",
+              showConfirmButton: true
             });
           }
         );
       }
-    })
+    });
   }
+
   updateTheme(id: number) {
-    alert('Update Theme with ID: ' + id); // Simple alert instead of navigating to another route
+    this.router.navigate(['/edit-theme', id]);
   }
-
-
-
 }

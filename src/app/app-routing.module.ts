@@ -35,6 +35,7 @@ import { AddActionFormationComponent } from './PlanFormation/add-actionformation
 import { EvalComponent } from './eval/eval.component';
 import { DemandeComponent } from './demande/demande.component';
 import { ListDemandeComponent } from './list-demande/list-demande.component';
+import { EnrolledFormationsComponent } from './enrolled-formations/enrolled-formations.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -73,6 +74,7 @@ const routes: Routes = [
   { path: 'add-cabinet', component: AddCabinetComponent },
   { path: 'demande', component: DemandeComponent},
   { path: 'list-demande', component: ListDemandeComponent},
+  { path: 'enrolled-formations', component: EnrolledFormationsComponent},
 
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
  

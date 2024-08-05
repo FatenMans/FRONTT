@@ -19,11 +19,10 @@ export class PlanFormationService {
     return this.http.get<PlanFormation>(`${this.apiUrl}/${id}`);
   }
 
-  createPlanFormation(planFormation: PlanFormation, themeId: number, lieuId: number[]): Observable<PlanFormation> {
-   
-    return this.http.post<PlanFormation>(this.apiUrl, planFormation);
+  createPlanFormation(planFormation: PlanFormation, themeId: number, lieuId: number): Observable<PlanFormation> {
+    return this.http.post<PlanFormation>(`${this.apiUrl}/create?themeId=${themeId}&lieuId=${lieuId}`, planFormation);
   }
-
+  
   updatePlanFormation(id: number, planFormation: PlanFormation): Observable<PlanFormation> {
     return this.http.put<PlanFormation>(`${this.apiUrl}/${id}`, planFormation);
   }

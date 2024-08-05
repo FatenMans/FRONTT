@@ -40,10 +40,10 @@ export class AddActionFormationComponent implements OnInit {
     dateDebut: ['', Validators.required],
     datefin: ['', Validators.required],
     duree: ['', Validators.required],
-    NbreCandidat: ['', Validators.required],
+    nbreCandidat: ['', Validators.required], // Assurez-vous que cela est défini comme string ou number
 
     themeId: ['', Validators.required],
-    lieuId: [[], Validators.required] // Multiple selection
+    lieuId: [null, Validators.required] // Multiple selection
   });
 
   ngOnInit(): void {

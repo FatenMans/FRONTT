@@ -34,40 +34,41 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table">
-  
-      <thead>
-        <tr>
-          <th>Code Action</th>
-          <th>Theme</th>
-          <th>Groupe N</th>
-          <th>Date Début</th>
-          <th>Date Fin</th>
-          <th>Durée</th>
-          <th>Nombre de Candidats</th>
-          <th>Lieu</th>
-          <th>Date de Modification</th>
-          <th>Modifié par</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let planFormation of planFormations">
-          <td>{{ planFormation.code_action }}</td>
-            <td>{{ planFormation.theme.theme}}</td>
-          <td>{{ planFormation.groupe_N }}</td>
-          <td>{{ planFormation.dateDebut }}</td>
-          <td>{{ planFormation.datefin }}</td>
-          <td>{{ planFormation.duree }}</td>
-          <td>{{ planFormation.nbreCandidat }}</td>
-          <td>{{ planFormation.lieux }}</td>
-
-          <td>{{ planFormation.lastModifiedDate | date: 'short' }}</td>
-          <td>{{ planFormation.lastModifiedBy }}</td>
-          <td>
-            <button (click)="deleteActionFormation(planFormation.id)">Supprimer</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+                        <thead>
+                            <tr>
+                                <th>Code Action</th>
+                                <th>Theme</th>
+                                <th>Groupe N</th>
+                                <th>Date Début</th>
+                                <th>Date Fin</th>
+                                <th>Durée</th>
+                                <th>Nombre de Candidats</th>
+                                <th>Lieu</th>
+                                <th>Date de Modification</th>
+                                <th>Modifié par</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let planFormation of planFormations">
+                                <td>{{ planFormation.code_action }}</td>
+                                <td>{{ planFormation.theme?.theme || 'N/A' }}</td>
+                                <td>{{ planFormation.groupe_N }}</td>
+                                <td>{{ planFormation.dateDebut }}</td>
+                                <td>{{ planFormation.datefin }}</td>
+                                <td>{{ planFormation.duree }}</td>
+                                <td>{{ planFormation.nbreCandidat  }}</td>
+                                <td>{{ planFormation.lieu ? planFormation.lieu.lieux : 'Non défini' }}</td>
+                                <td>{{ planFormation.lastModifiedDate | date: 'short' }}</td>
+                                <td>{{ planFormation.lastModifiedBy }}</td>
+                                <td>
+                                    <button (click)="deleteActionFormation(planFormation.id)">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

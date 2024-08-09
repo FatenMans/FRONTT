@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormationService } from '../_services/formation.service';
+import { EnrolledFormation } from '../models/enrolledFormation.model';
+import { EnrolledFormationService } from '../_services/enrolled-formation.service';
 
 @Component({
   selector: 'app-enrolled-formations',
@@ -7,19 +8,15 @@ import { FormationService } from '../_services/formation.service';
   styleUrls: ['./enrolled-formations.component.css']
 })
 export class EnrolledFormationsComponent implements OnInit {
+  enrolledFormations: any[] = [];
+  participantId = 26; // Remplacer par l'ID du participant actuel
 
-  formations: any[] = [];
-
-  constructor(private formationService: FormationService) { }
+  constructor(private enrolledFormationService: EnrolledFormationService) { }
 
   ngOnInit(): void {
-    const participantId = Number(localStorage.getItem('participantId'));
-    if (participantId) {
-      this.formationService.getFormationsByParticipant(participantId).subscribe(data => {
-        this.formations = data;
-      }, error => {
-        console.error('Error fetching enrolled formations:', error);
+    this.enrolledFormationService.getFormationsByParticipant(this.participantId)
+      .subscribe(data => {
+        this.enrolledFormations = data;
       });
-    }
   }
 }

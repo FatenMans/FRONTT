@@ -1,3 +1,5 @@
+<!-- participant-list.component.html -->
+
 <app-header></app-header>
 <app-side-bar></app-side-bar>
 <div class="main-container">
@@ -12,7 +14,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Formation</a></li>
-                <li class="breadcrumb-item active" aria-current="page">list-Formation</li>
+                <li class="breadcrumb-item active" aria-current="page">Liste des Participants</li>
               </ol>
             </nav>
           </div>
@@ -66,6 +68,9 @@
                 <td>
                   <button class="btn-custom btn-custom-modifier" (click)="updateParticipant(participant.id)">Modifier</button>
                   <button class="btn-custom btn-custom-supprimer" (click)="deleteParticipant(participant.id)">Supprimer</button>
+                  
+                  <!-- Conditionally render the Accept and Convert button -->
+                 
                 </td>
               </tr>
             </tbody>

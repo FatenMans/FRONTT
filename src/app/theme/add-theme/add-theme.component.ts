@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ThemeService } from 'src/app/_services/theme.service';
-
 import Swal from 'sweetalert2';
-
-
 
 @Component({
   selector: 'app-add-theme',
@@ -16,42 +13,30 @@ export class AddThemeComponent implements OnInit {
 
   themeForm: FormGroup;
   submitted = false;
-  f: any;
-  selectedFile: File | null = null;
+  f:any
 
-  constructor(private fb: FormBuilder, private themeService: ThemeService,
+  constructor(
+    private fb: FormBuilder,
+    private themeService: ThemeService,
     private router: Router
   ) {
     this.themeForm = this.fb.group({
       codeTheme: ['', Validators.required],
       theme: ['', Validators.required],
-      typeThemeIntraInter: ['', Validators.required],
-      accord: ['', Validators.required],
-      documents: ['', Validators.required],
-      
-      // Add other fields here if necessary
-    })
+      typeFormation: ['', Validators.required],
+      accord: ['', Validators.required]
+    });
+  }
 
-  }
   ngOnInit(): void {}
-  onFileChange(event: any) {
-    if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0];
-    }
-  }
- 
-   
+
   ajouterTheme() {
     this.submitted = true;
-    console.log(this.themeForm.value)
-    if (this.themeForm.valid && this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-      formData.append('themeData', JSON.stringify(this.themeForm.value));
-  
-      console.log('FormData:', formData); // Vérifiez si formData est correctement rempli
- 
-      this.themeService.createThemeWithDocument(formData).subscribe(
+
+    if (this.themeForm.valid) {
+      console.log(this.themeForm.value)
+      // Envoyez les données du formulaire directement
+      this.themeService.createTheme(this.themeForm.value).subscribe(
         response => {
           console.log('Theme ajouté avec succès', response);
           Swal.fire({
@@ -71,6 +56,8 @@ export class AddThemeComponent implements OnInit {
           });
         }
       );
+    } else {
+      console.log('Le formulaire est invalide');
     }
   }
 }

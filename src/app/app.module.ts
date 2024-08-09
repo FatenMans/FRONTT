@@ -48,6 +48,9 @@ import { EvalComponent } from './eval/eval.component';
 import { DemandeComponent } from './demande/demande.component';
 import { ListDemandeComponent } from './list-demande/list-demande.component';
 import { EnrolledFormationsComponent } from './enrolled-formations/enrolled-formations.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -115,6 +118,9 @@ EnrolledFormationsComponent
     FormsModule,
     CommonModule,
     FullCalendarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
 
 
 

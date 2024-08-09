@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Formateur } from 'src/app/models/formateur.model';
 import { FormateurService } from 'src/app/_services/formateur.service';
+import { ThemeService } from 'src/app/_services/theme.service';
 
 @Component({
   selector: 'app-add-formateur',
@@ -11,11 +12,13 @@ import { FormateurService } from 'src/app/_services/formateur.service';
   styleUrls: ['./add-formateur.component.css']
 })
 export class AddFormateurComponent implements OnInit {
-  formateur = new Formateur();
+  formateur: Formateur = new Formateur();
   formateurs: any[] = []; // List of formateurs
   submitted = false;
+  themes: any[] = [];
+  themeId: any
 
-  constructor(private router: Router, private formateurService: FormateurService, private formbuilder: FormBuilder) { }
+  constructor(private router: Router, private formateurService: FormateurService, private formbuilder: FormBuilder, private themeService: ThemeService) { }
 
   ngOnInit(): void {
     // Fetch all formateurs
@@ -23,6 +26,7 @@ export class AddFormateurComponent implements OnInit {
       data => this.formateurs = data,
       error => console.log(error)
     );
+    this.loadThemes();
   }
 
   formModel = this.formbuilder.group({
@@ -36,7 +40,14 @@ export class AddFormateurComponent implements OnInit {
     montant: ['', Validators.required],
     autorisation: ['', Validators.required],
     typeFormateur: ['', Validators.required],
+    themeId: [, Validators.required], // Changed to single themeId
   });
+
+  loadThemes(): void {
+    this.themeService.getThemes().subscribe(data => {
+      this.themes = data;
+    });
+  }
 
   get f() { return this.formModel.controls; }
 
@@ -60,7 +71,9 @@ export class AddFormateurComponent implements OnInit {
       return;
     }
 
-    this.formateurService.createFormateur(this.formModel.value).subscribe(
+
+
+    this.formateurService.createFormateur(this.formModel.value, this.formModel.value.themeId!).subscribe(
       res => {
         console.log(res);
         console.log("Formateur ajouté avec succès");

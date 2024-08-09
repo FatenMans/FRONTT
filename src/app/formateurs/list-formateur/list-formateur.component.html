@@ -6,7 +6,6 @@
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
             <div class="page-header">
-
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
@@ -15,7 +14,7 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">list-Formateur </li>
+                                <li class="breadcrumb-item active" aria-current="page">List Formateurs</li>
                             </ol>
                         </nav>
                     </div>
@@ -24,7 +23,6 @@
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                 January 2024
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -35,20 +33,34 @@
                         <h4 class="text-blue h4">Liste des Formateurs</h4>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table">
 
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="input-group">
+                        <input [(ngModel)]="inputSearch" (ngModelChange)="searchFormateur()" placeholder="Rechercher un formateur..." class="form-control">
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sélectionner un thème
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="themeDropdown">
+                          <a class="dropdown-item" *ngFor="let theme of themes" (click)="onThemeSelect(theme)">
+                            {{ theme.theme }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Code</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
+                                <th>Thème</th>
                                 <th>CIN</th>
                                 <th>Matricule</th>
                                 <th>Téléphone</th>
                                 <th>Montant</th>
-
-
                                 <th>Autorisation</th>
                                 <th>Type Formateur</th>
                                 <th>Email</th>
@@ -62,56 +74,25 @@
                                 <td>{{ formateur.code }}</td>
                                 <td>{{ formateur.nom }}</td>
                                 <td>{{ formateur.prenom }}</td>
+                                <td>{{ formateur.themes[0]?.theme }}</td>
                                 <td>{{ formateur.cin }}</td>
                                 <td>{{ formateur.matricule }}</td>
                                 <td>{{ formateur.tel }}</td>
                                 <td>{{ formateur.montant }}</td>
-
-
-
                                 <td>{{ formateur.autorisation }}</td>
                                 <td>{{ formateur.typeFormateur }}</td>
                                 <td>{{ formateur.mail }}</td>
                                 <td>{{ formateur.lastModifiedDate | date: 'short' }}</td>
                                 <td>{{ formateur.lastModifiedBy }}</td>
                                 <td>
-                                    <button class="btn-custom btn-custom-modifier"
-                                        routerLink="/edit-formateur/{{formateur.id}}">Modifier</button>
-                                    <button class="btn-custom btn-custom-modifier"
-                                        (click)="deleteFormateur(formateur.id)">Supprimer</button>
+                                    <button class="btn-custom btn-custom-modifier" routerLink="/edit-formateur/{{formateur.id}}">Modifier</button>
+                                    <button class="btn-custom btn-custom-supprimer" (click)="deleteFormateur(formateur.id)">Supprimer</button>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="collapse collapse-box" id="basic-table">
-                    <div class="code-box">
-                        <div class="clearfix">
-                            <a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left"
-                                data-clipboard-target="#basic-table-code">
-                                <i class="fa fa-clipboard"></i> Copy Code
-                            </a>
-                            <a href="#basic-table" class="btn btn-primary btn-sm pull-right" rel="content-y"
-                                data-toggle="collapse" role="button">
-                                <i class="fa fa-eye-slash"></i> Hide Code
-                            </a>
-                        </div>
-                        <pre><code class="xml copy-pre" id="basic-table-code">
-<table class="table">
-<thead>
-  <tr>
-    <th scope="col">#</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <th scope="row">1</th>
-  </tr>
-</tbody>
-</table>
-
-    </code></pre>
-                    </div>
-                </div>
             </div>
+        </div>
+    </div>
+</div>

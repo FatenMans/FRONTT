@@ -12,7 +12,7 @@
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a routerLink="./home.html">Formation</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Liste des  Actions Formations</li>
+                                <li class="breadcrumb-item active" aria-current="page">Liste des Actions Formations</li>
                             </ol>
                         </nav>
                     </div>
@@ -26,6 +26,26 @@
                 </div>
             </div>
 
+            <!-- Recherche par Thème -->
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Recherche par Thème</h4>
+                    </div>
+                </div>
+                <form (ngSubmit)="searchByTheme()">
+                    <div class="form-group">
+                        <label for="themeSelect">Choisir un thème</label>
+                        <select id="themeSelect" class="form-control" [(ngModel)]="selectedTheme" name="themeSelect">
+                            <option value="">Tous les thèmes</option>
+                            <option *ngFor="let theme of themes" [value]="theme.theme">{{ theme.theme }}</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </form>
+            </div>
+
+            <!-- Liste des Formations -->
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix mb-20">
                     <div class="pull-left">
@@ -50,19 +70,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let planFormation of planFormations">
+                            <tr *ngFor="let planFormation of filteredPlanFormations"
+                                [ngClass]="{'highlighted-row': planFormation.theme?.theme === selectedTheme}">
                                 <td>{{ planFormation.code_action }}</td>
                                 <td>{{ planFormation.theme?.theme || 'N/A' }}</td>
                                 <td>{{ planFormation.groupe_N }}</td>
                                 <td>{{ planFormation.dateDebut }}</td>
                                 <td>{{ planFormation.datefin }}</td>
                                 <td>{{ planFormation.duree }}</td>
-                                <td>{{ planFormation.nbreCandidat  }}</td>
+                                <td>{{ planFormation.nbreCandidat }}</td>
                                 <td>{{ planFormation.lieu ? planFormation.lieu.lieux : 'Non défini' }}</td>
                                 <td>{{ planFormation.lastModifiedDate | date: 'short' }}</td>
                                 <td>{{ planFormation.lastModifiedBy }}</td>
                                 <td>
-                                    <button (click)="deleteActionFormation(planFormation.id)">Supprimer</button>
+                                    <button class="btn-custom btn-custom-supprimer" (click)="deleteActionFormation(planFormation.id)">Supprimer</button>
                                 </td>
                             </tr>
                         </tbody>

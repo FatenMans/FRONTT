@@ -12,7 +12,9 @@ export class Formateur {
     autorisation?: string;
     typeFormateur: string;
     email: string;
-    id: any;
+    themeIds: number[]; // Ensure this matches the expected format
+
+    id?: any;
     lastModifiedDate?: string;
     lastModifiedBy?: string;
 
@@ -25,5 +27,6 @@ export class Formateur {
         this.type = '';
         this.typeFormateur = '';
         this.email = '';
+        this.themeIds = [];
     }
 }

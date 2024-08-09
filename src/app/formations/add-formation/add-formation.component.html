@@ -79,7 +79,7 @@
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="input-duree">Durée</label>
             <div class="col-sm-12 col-md-10">
-              <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.duree.errors }"
+              <input type="texte" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.duree.errors }"
                 id="input-duree" placeholder="Durée" formControlName="duree" />
               <div *ngIf="submitted && f.duree.errors" class="invalid-feedback">
                 <div>La durée est obligatoire</div>

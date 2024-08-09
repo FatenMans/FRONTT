@@ -106,8 +106,8 @@ export class SideBarComponent implements OnInit {
     console.log(this.role)
 
   }
-  toggleEnrolle() {
-    let list = document.getElementById("Enrolle")
+  toggleEnrolledFormation() {
+    let list = document.getElementById("EnrolledFormations")
     if (list!.style.display === "none") {
       list!.style.display = "block";
     } else {

@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -32,24 +32,22 @@
                                 <th>Type Formation</th>
                                 <th>Frais Total Formateur</th>
                                 <th>Nom Formateur</th>
-                                <th>Date de Modification</th>
-                                <th>Modifié par</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let formation of formations">
-                                <td>{{ formation.id }}</td>
-                                <td>{{ formation.nomFormation }}</td>
-                                <td>{{ formation.theme.theme }}</td>
-                                <td>{{ formation.numGroupe }}</td>
-                                <td>{{ formation.dateDebut }}</td>
-                                <td>{{ formation.dateFin }}</td>
-                                <td>{{ formation.duree }}</td>
-                                <td>{{ formation.typeformation }}</td>
-                                <td>{{ formation.fraisTotalFormateur }}</td>
-                                <td>{{ formation.formateur.nom }}</td>
-                                <td>{{ formation.lastModifiedDate | date: 'short' }}</td>
-                                <td>{{ formation.lastModifiedBy }}</td>
+                            <tr *ngFor="let enrolledFormation of enrolledFormations">
+                                <td>{{ enrolledFormation.id }}</td>
+                                <td>{{ enrolledFormation.nomFormation }}</td>
+                                <td>{{ enrolledFormation.theme.theme }}</td>
+                                <td>{{ enrolledFormation.numGroupe }}</td>
+                                <td>{{ enrolledFormation.dateDebut }}</td>
+                                <td>{{ enrolledFormation.dateFin }}</td>
+                                <td>{{ enrolledFormation.duree }}</td>
+                                <td>{{ enrolledFormation.typeformation }}</td>
+                                <td>{{ enrolledFormation.fraisTotalFormateur }}</td>
+                                <td>{{ enrolledFormation.formateur.nom }}</td>
+                               
                             </tr>
                         </tbody>
                     </table>

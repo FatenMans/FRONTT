@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DemandeService } from '../_services/demande.service';
 import Swal from 'sweetalert2';
+import { ParticipantService } from '../_services/participant.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-list-demande',
@@ -10,7 +12,9 @@ import Swal from 'sweetalert2';
 export class ListDemandeComponent implements OnInit {
   demandes: any[] = []; // Assurez-vous que ce type correspond à votre modèle de données
 
-  constructor(private demandeService: DemandeService) { }
+  constructor(private demandeService: DemandeService,
+    private participantService: ParticipantService
+  ) { }
 
   ngOnInit(): void {
     this.getAlldemande();
@@ -27,6 +31,8 @@ export class ListDemandeComponent implements OnInit {
       }
     );
   }
+  
+
 
   refuserDemande(id: number): void {
     Swal.fire({
@@ -88,4 +94,16 @@ export class ListDemandeComponent implements OnInit {
       }
     });
   }
+  downloadFile(fileName: string): void {
+    this.participantService.downloadFile(fileName).subscribe(
+      (blob: Blob) => {
+        console.log('Blob:', blob);
+        saveAs(blob, fileName);
+      },
+      error => {
+        console.error('Erreur lors du téléchargement du fichier', error);
+      }
+    );
+  }
+
 }

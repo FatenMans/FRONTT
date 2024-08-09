@@ -53,15 +53,15 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="select-typeThemeIntraInter">Type Thème Intra/Inter</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="select-typeThemeIntraInter"> typeFormation</label>
                         <div class="col-sm-12 col-md-10">
-                            <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeThemeIntraInter.errors }" id="select-typeThemeIntraInter" formControlName="typeThemeIntraInter">
+                            <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeFormation.errors }" id="select-typeFormation" formControlName="typeFormation">
                                 <option value="">Select Type</option>
-                                <option value="Inter">Inter</option>
-                                <option value="Intra">Intra</option>
+                                <option value="Inter">Interne</option>
+                                <option value="Intra">Externe</option>
                             </select>
-                            <div *ngIf="submitted && f.typeThemeIntraInter.errors" class="invalid-feedback">
-                                <div>Le type thème Intra/Inter est obligatoire</div>
+                            <div *ngIf="submitted && f.typeFormation.errors" class="invalid-feedback">
+                                <div>Le  typeFormation est obligatoire</div>
                             </div>
                         </div>
                     </div>
@@ -76,12 +76,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="input-documents">Documents</label>
-                        <div class="col-sm-12 col-md-10">
-                          <input type="file" class="form-control" id="input-documents" (change)="onFileChange($event)" />
-                        </div>
-                      </div>
+                    
 
                     <div class="form-group row justify-content-end">
                         <div class="col-sm-12 col-md-10">

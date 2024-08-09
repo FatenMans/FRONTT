@@ -25,9 +25,9 @@
                             <tr>
                                 <th>Code</th>
                                 <th>Thème</th>
-                                <th>Type Thème</th>
+                                <th>typeFormation</th>
                                 <th>Accord</th>
-                                <th>Documents</th>
+                              
                                 <th>Date de Modification</th>
                                 <th>Modifié par</th>
                                 <th>Actions</th>
@@ -37,12 +37,9 @@
                             <tr *ngFor="let theme of themes">
                                 <td>{{ theme.codeTheme }}</td>
                                 <td>{{ theme.theme }}</td>
-                                <td>{{ theme.typeThemeIntraInter }}</td>
+                                <td>{{ theme.typeFormation}}</td>
                                 <td>{{ theme.accord }}</td>
-                                <td>
-                                    <a *ngIf="theme.documents" [href]="theme.documents" target="_blank">Voir Document</a>
-                                    <span *ngIf="!theme.documents">N/A</span>
-                                </td>
+                              
                                 <td>{{ theme.lastModifiedDate | date: 'short' }}</td>
                                 <td>{{ theme.lastModifiedBy }}</td>
                                 <td>

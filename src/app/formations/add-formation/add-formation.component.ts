@@ -70,30 +70,41 @@ export class AddFormationComponent {
     });
   }
   setupDateChangeListeners(): void {
-    this.FormModel.get('dateDebut')!.valueChanges.subscribe(() => this.calculateDuration());
-    this.FormModel.get('datefin')!.valueChanges.subscribe(() => this.calculateDuration());
+    const dateDebutControl = this.FormModel.get('dateDebut');
+    const dateFinControl = this.FormModel.get('dateFin');
+  
+    if (dateDebutControl) {
+      dateDebutControl.valueChanges.subscribe(() => this.calculateDuration());
+    } else {
+      console.warn('DateDebut control is not found');
+    }
+  
+    if (dateFinControl) {
+      dateFinControl.valueChanges.subscribe(() => this.calculateDuration());
+    } else {
+      console.warn('DateFin control is not found');
+    }
   }
-
+  
   calculateDuration(): void {
     const dateDebutValue = this.FormModel.get('dateDebut')!.value;
     const dateFinValue = this.FormModel.get('dateFin')!.value;
-
-    console
-
+  
     if (dateDebutValue && dateFinValue) {
       const dateDebut = new Date(dateDebutValue);
       const dateFin = new Date(dateFinValue);
-
-      if (dateDebut && dateFin && dateFin > dateDebut) {
+  
+      if (dateDebut instanceof Date && !isNaN(dateDebut.getTime()) && 
+          dateFin instanceof Date && !isNaN(dateFin.getTime()) && dateFin > dateDebut) {
         const timeDiff = Math.abs(dateFin.getTime() - dateDebut.getTime());
-        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)).toString() + ' Jr';
-        this.FormModel.get('duree')!.setValue(diffDays);
+        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) + ' Jr';
+        this.FormModel.get('duree')!.setValue(diffDays, { emitEvent: false });
       } else {
         this.FormModel.get('duree')!.setValue('');
       }
     }
   }
-
+  
   get f() { return this.FormModel.controls; }
 
   ajouterFormation() {

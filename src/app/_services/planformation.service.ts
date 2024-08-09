@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PlanFormation } from '../models/planformation.model';
 
@@ -33,5 +33,8 @@ export class PlanFormationService {
 
   addParticipantToFormation(formationId: number, participantId: number): Observable<PlanFormation> {
     return this.http.post<PlanFormation>(`${this.apiUrl}/${formationId}/participants/${participantId}`, {});
+  }
+  searchByTheme(theme: string): Observable<PlanFormation[]> {
+    return this.http.get<PlanFormation[]>(`${this.apiUrl}/search/${theme}`);
   }
 }

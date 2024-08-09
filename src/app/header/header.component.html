@@ -104,9 +104,10 @@
                 </div>
             </div>
         </div>
-        <div class="new-button">
-            <button class="btn btn-primary" (click)="becomeInternalTrainer()" routerLink="/list-demande">Devenir
+        <div class="new-button" *ngIf="role=='User'">
+            <button class="btn btn-primary"  routerLink="/demande" >Devenir
                 Formateur Interne</button>
+
         </div>
         <div class="user-info-dropdown">
             <div class="dropdown">
@@ -120,15 +121,43 @@
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
                     <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                    <a class="dropdown-item" (click)="logout()" routerlink="/logout"><i class="dw dw-logout"></i> Log Out</a>
+                    <a class="dropdown-item" (click)="logout()" ><i class="dw dw-logout"></i> Log Out</a>
                 </div>
             </div>
         </div>
 
 
+
         <div class="github-link">
             <a href="https://github.com/dropways/deskapp" target="_blank"><img src="assets/vendors/images/github.svg"
                     alt=""></a>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" #uploadModal
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload File</h5>
+                <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="fileInput">Choose File</label>
+                        <input type="file" class="form-control-file" id="fileInput" (change)="onFileSelected($event)">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="becomeInternalTrainer()">Upload</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
         </div>
     </div>
 </div>

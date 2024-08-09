@@ -5,6 +5,8 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { FormationService } from 'src/app/_services/formation.service';
 import Swal from 'sweetalert2';
 import { HttpParams } from '@angular/common/http';
+import { ThemeService } from 'src/app/_services/theme.service';
+import { ParticipantService } from 'src/app/_services/participant.service';
 
 
 @Component({
@@ -19,31 +21,24 @@ export class ListFormationsComponent implements OnInit {
   isUser: boolean = false;
   userId: any;
   participantnom: any;
+  role:any;
+  themes:any
 
-  constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder) { }
+  constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder, private themeService: ThemeService,
+    private participantService: ParticipantService
+  ) { }
 
   ngOnInit(): void {
     this.getFormations();
-    this.isUser = this['authService'].isUserRole(); // Assuming authService has a method to check user role
-    this.userId = this['authService'].getUserId(); // Assu
-
+   
+   
+    this.getRole()
     this['myForm'] = this.fb.group({
       typeFormateur: new FormControl('')
       // Autres contrôles de formulaire ici
     });
   }
-  loadFormationsForParticipant(): void {
-    const participantId = 1; // Remplacer par l'ID du participant authentifié (vous devrez implémenter la gestion de l'authentification)
-    this.formationService.getFormationsByParticipant(participantId).subscribe(
-      formations => {
-        this.formations = formations;
-      },
-      error => {
-        console.error('Error fetching formations:', error);
-        // Gérer l'erreur comme nécessaire
-      }
-    );
-  }
+  
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
     console.log(user)
@@ -57,8 +52,11 @@ export class ListFormationsComponent implements OnInit {
                     icon: 'success',
                     title: 'Succès',
                     text: 'Vous avez participé avec succès à la formation.',
+                  
                     confirmButtonText: 'OK'
+
                 });
+                this.router.navigate(['/enrolled-formations'])
             },
             error => {
                 console.error('Erreur lors de l\'ajout du participant à la formation:', error);
@@ -88,6 +86,11 @@ export class ListFormationsComponent implements OnInit {
       },
 
     );
+  }
+  getRole() {
+    this.role = JSON.parse(localStorage.getItem("roles")!)
+    console.log(this.role)
+
   }
   deleteFormation(id: number) {
     Swal.fire({

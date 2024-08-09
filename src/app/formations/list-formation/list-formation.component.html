@@ -67,10 +67,10 @@
                                 <td>
 
                                     <button class="btn-custom btn-custom-modifier"
-                                        routerLink="/edit-formation/{{formation.id}}">Modifier</button>
+                                       *ngIf="role=='Admin'"  routerLink="/edit-formation/{{formation.id}}">Modifier</button>
                                     <button class="btn-custom btn-custom-supprimer"
-                                        (click)="deleteFormation(formation.id)">Supprimer</button>
-                                        <button  class="btn-custom btn-custom-participer" (click)="participer(formation.id)">Participer</button>
+                                    *ngIf="role=='Admin'" (click)="deleteFormation(formation.id)">Supprimer</button>
+                                        <button  class="btn-custom btn-custom-participer" *ngIf="role=='User'" (click)="participer(formation.id)">Participer</button>
                                 </td>
 
                             </tr>

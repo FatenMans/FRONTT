@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LieuService } from 'src/app/_services/lieu.service';
 import { PlanFormationService } from 'src/app/_services/planformation.service';
 import { ThemeService } from 'src/app/_services/theme.service';
 import { PlanFormation } from 'src/app/models/planformation.model';
@@ -12,39 +11,51 @@ import Swal from 'sweetalert2';
 })
 export class ListActionformationComponent implements OnInit {
   planFormations: PlanFormation[] = [];
-  themes: any;
-  lieu: any;
+  filteredPlanFormations: PlanFormation[] = [];
+  themes: any[] = [];
+  selectedTheme: string = '';
 
-  constructor(private planformationService: PlanFormationService, private themeService: ThemeService, 
-    private lieuService: LieuService) { }
+  constructor(
+    private planformationService: PlanFormationService, 
+    private themeService: ThemeService
+  ) { }
 
   ngOnInit(): void {
-    this.planformationService.getAllPlanFormations().subscribe(data => {
-      this.planFormations = data;
-      console.log(this.planFormations); // Debugging line to check the data structure
-    });
+    this.getThemes();
+    this.getAllPlanFormations();
   }
 
   private getThemes() {
     this.themeService.getThemes().subscribe(
       data => {
         this.themes = data;
-        console.log('Theme fetched from backend:', data);
+        console.log('Themes fetched from backend:', data);
       }
     );
   }
 
-  private getLieux() {
-    this.lieuService.getAllLieux().subscribe(
-      data => {
-        this.lieu = data;
-        console.log('Lieux fetched from backend:', data);
-      },
-      error => {
-        console.error('There was an error!', error);
-      }
-    );
+  private getAllPlanFormations() {
+    this.planformationService.getAllPlanFormations().subscribe(data => {
+      this.planFormations = data;
+      this.filteredPlanFormations = data;
+    });
   }
+
+  searchByTheme() {
+    if (this.selectedTheme) {
+      this.planformationService.searchByTheme(this.selectedTheme).subscribe(
+        data => {
+          this.filteredPlanFormations = data;
+        },
+        error => {
+          console.error('Error fetching data by theme', error);
+        }
+      );
+    } else {
+      this.getAllPlanFormations();
+    }
+  }
+  
 
   deleteActionFormation(id: number) {
     Swal.fire({
@@ -64,21 +75,17 @@ export class ListActionformationComponent implements OnInit {
               title: 'Action supprimée avec succès',
               showConfirmButton: true,
             });
-            this.ngOnInit(); // Refresh the list after deletion
+            this.getAllPlanFormations(); // Refresh the list after deletion
           },
           err => {
             Swal.fire({
               icon: 'error',
-              title: "Erreur lors de la suppression de la Action",
+              title: "Erreur lors de la suppression de l'Action",
               showConfirmButton: true,
             });
           }
         );
       }
     });
-  }
-
-  updateLieu(id: number) {
-    alert('Update Lieu with ID: ' + id); // Simple alert instead of navigating to another route
   }
 }

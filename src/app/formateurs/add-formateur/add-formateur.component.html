@@ -93,6 +93,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="formateurId">Theme</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select formControlName="themeId" class="form-control" id="themeId" required>
+                                <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.theme }}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f.themeId.errors" class="invalid-feedback">
+                                <div *ngIf="f.themeId.errors">Theme is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="input-matricule">Matricule</label>
                         <div class="col-sm-12 col-md-10">
                             <input type="text" class="form-control"
@@ -146,10 +158,10 @@
                             </select>
                         </div>
                     </div>
-                   
+
                     <div class="form-group row justify-content-end">
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" class="btn btn-primary" (click)="ajouterFormateur()">Ajouter</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </div>
                 </form>

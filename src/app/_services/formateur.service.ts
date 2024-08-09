@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Formateur } from '../models/formateur.model';
 
@@ -11,12 +11,15 @@ export class FormateurService {
 
   constructor(private http: HttpClient) { }
 
-  getFormateurs(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/formateurs/all');
+
+  createFormateur(formateur: any, themeId: number): Observable<any> {
+    // Créer un objet contenant les données à envoyer
+ 
+    
+    // Envoyer la requête POST avec les données au format JSON et le thèmeId en tant que paramètre de requête
+    return this.http.post<any>(`${this.apiUrl}/formateurs/create/${themeId}`, formateur);
   }
-  createFormateur(formateur: any) {
-    return this.http.post<any>(this.apiUrl + '/formateurs/create', formateur);
-  }
+
 
 
   deleteFormateur(id: number): Observable<any> {
@@ -31,6 +34,18 @@ export class FormateurService {
   getFormateurById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/formateurs/${id}`);
   }
+
+  searchFormateur(nom:string):Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiUrl}/formateurs/search/${nom}`);
+  }
+  getFormateurs(theme?: string): Observable<any[]> {
+    let params = new HttpParams();
+    if (theme) {
+      params = params.set('theme', theme);
+    }
+    return this.http.get<any[]>(`${this.apiUrl}/formateurs/all/${theme}`, { params });
+  }
 }
+
 
 

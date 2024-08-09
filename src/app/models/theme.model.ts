@@ -2,7 +2,7 @@ export interface Theme {
   id: number;
   codeTheme: string;
   theme: string;
-  typeThemeIntraInter: string;
+  typeFormation: string;
   accord: string;
   documents: string;
   lastModifiedDate?: string;

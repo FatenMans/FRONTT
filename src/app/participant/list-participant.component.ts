@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 export class ListParticipantComponent {
 
   participants: any[] = [];
+  role: string = ''; // Add logic to set the user's role
+
 
   constructor(private participantService: ParticipantService, private router: Router) { }
 
@@ -24,9 +26,43 @@ export class ListParticipantComponent {
         console.log('Participants fetched from backend:', data);
         this.participants = data;
       },
-
+      error => {
+        console.error('Error fetching participants:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur lors du chargement des participants',
+          text: 'Veuillez réessayer plus tard.',
+        });
+      }
     );
   }
+
+  participer(formationId: number, participantnom: number): void {
+    this.convertToFormateur(participantnom);
+  }
+
+  convertToFormateur(id: number): void {
+    this.participantService.convertParticipant(id).subscribe(
+      response => {
+        console.log(response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Participant converti en Formateur avec succès',
+          showConfirmButton: true,
+        });
+        this.getParticipants(); // Reload the participant list
+      },
+      error => {
+        console.error('Error converting participant:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur lors de la conversion du participant',
+          text: 'Veuillez réessayer plus tard.',
+        });
+      }
+    );
+  }
+
   deleteParticipant(id: number) {
     Swal.fire({
       title: 'Êtes-vous sûr de vouloir supprimer cette participant?',
@@ -42,29 +78,25 @@ export class ListParticipantComponent {
           res => {
             Swal.fire({
               icon: 'success',
-              title: 'Formation supprimée avec succès',
+              title: 'Participant supprimé avec succès',
               showConfirmButton: true,
             });
-            this.getParticipants()
-
+            this.getParticipants();
           },
           err => {
             Swal.fire({
               icon: 'error',
-              title: "Erreur lors de la suppression de la formation",
+              title: "Erreur lors de la suppression du participant",
               showConfirmButton: true,
             });
           }
         );
       }
-    })
-
+    });
   }
+
   updateParticipant(id: number) {
-    alert('Update participant with ID: ' + id); // Simple alert instead of navigating to another route
+    alert('Update participant with ID: ' + id); // This can be updated to navigate to an edit page if required
   }
 
 }
-
-
-

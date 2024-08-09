@@ -7,9 +7,6 @@ import { Theme } from '../models/theme.model';
   providedIn: 'root'
 })
 export class ThemeService {
-  createTheme(theme: Theme) {
-    throw new Error('Method not implemented.');
-  }
 
 
   private apiUrl = 'http://localhost:8080/api';
@@ -23,8 +20,8 @@ export class ThemeService {
     return this.http.get<any>(`${this.apiUrl}/themes/${id}`);
   }
 
-  createThemeWithDocument(formData: FormData,): Observable<Theme> {
-    return this.http.post<Theme>(`${this.apiUrl}/themes/with-document`, formData);
+  createTheme(theme: Theme): Observable<Theme> {
+    return this.http.post<Theme>(`${this.apiUrl}/themes/create`, theme);
   }
   deleteTheme(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/themes/${id}`);

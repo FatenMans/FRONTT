@@ -9,7 +9,7 @@ import { EnrolledFormationService } from '../_services/enrolled-formation.servic
 })
 export class EnrolledFormationsComponent implements OnInit {
   enrolledFormations: any[] = [];
-  participantId = 26; // Remplacer par l'ID du participant actuel
+  participantId = 1; // Remplacer par l'ID du participant actuel
 
   constructor(private enrolledFormationService: EnrolledFormationService) { }
 

@@ -15,7 +15,7 @@ export class LieuhebService {
     return this.http.get<Lieuheb[]>(this.apiUrl);
   }
 
-  createLieuHeb(lieuheb: Lieuheb): Observable<Lieuheb> {
+  createLieuHeb(lieuheb: any){
     return this.http.post<Lieuheb>(`${this.apiUrl}/create`, lieuheb);
   }
   deleteLieuheb(id: number): Observable<any> {

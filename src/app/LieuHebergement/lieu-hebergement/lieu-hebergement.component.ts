@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./lieu-hebergement.component.css']
 })
 export class LieuHebergementComponent implements OnInit {
-  lieux: Lieuheb[] = [];
+  lieux: any
   lieu: any;
 
   constructor(private lieuhebService: LieuhebService, private router: Router) { }
@@ -23,7 +23,7 @@ export class LieuHebergementComponent implements OnInit {
     this.lieuhebService.getLieu().subscribe(
       data => {
         console.log('Lieux fetched from backend:', data);
-        this.lieux = data; // Mise à jour de this.lieux
+        this.lieux= data; // Mise à jour de this.lieux
       },
       error => {
         console.error('There was an error!', error);

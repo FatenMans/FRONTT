@@ -64,8 +64,29 @@ export class ListDemandeComponent implements OnInit {
       }
     });
   }
+  convertToFormateur(id: number): void {
+    this.participantService.convertParticipant(id).subscribe(
+      response => {
+        console.log(response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Participant converti en Formateur avec succès',
+          showConfirmButton: true,
+        });
+        // Reload the participant list
+      },
+      error => {
+        console.error('Error converting participant:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur lors de la conversion du participant',
+          text: 'Veuillez réessayer plus tard.',
+        });
+      }
+    );
+  }
 
-  acceptDemande(id: number) {
+  acceptDemande(id: number, participantId: number) {
     Swal.fire({
       title: 'Êtes-vous sûr de vouloir accepter cette demande?',
       text: "Cette action ne peut pas être annulée!",
@@ -91,6 +112,7 @@ export class ListDemandeComponent implements OnInit {
             });
           }
         );
+        this.convertToFormateur(participantId)
       }
     });
   }

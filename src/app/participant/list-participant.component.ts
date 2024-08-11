@@ -37,31 +37,8 @@ export class ListParticipantComponent {
     );
   }
 
-  participer(formationId: number, participantnom: number): void {
-    this.convertToFormateur(participantnom);
-  }
 
-  convertToFormateur(id: number): void {
-    this.participantService.convertParticipant(id).subscribe(
-      response => {
-        console.log(response);
-        Swal.fire({
-          icon: 'success',
-          title: 'Participant converti en Formateur avec succès',
-          showConfirmButton: true,
-        });
-        this.getParticipants(); // Reload the participant list
-      },
-      error => {
-        console.error('Error converting participant:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur lors de la conversion du participant',
-          text: 'Veuillez réessayer plus tard.',
-        });
-      }
-    );
-  }
+
 
   deleteParticipant(id: number) {
     Swal.fire({

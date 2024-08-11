@@ -31,8 +31,11 @@
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Code</th>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Cin</th>
+                <th>Tel</th>
                 <th>Password</th>
                 <th>Lieu de Travail</th>
                 <th>Email</th>
@@ -43,6 +46,7 @@
                 <th>Fonction</th>
                 <th>Sexe</th>
                 <th>Confirmation</th>
+                <th>Lieu lieuHebergement</th>
                 <th>Age</th>
                 <th>Matricule</th>
                 <th>Action</th>
@@ -51,8 +55,11 @@
             <tbody>
               <tr *ngFor="let participant of participants">
                 <td>{{ participant.id }}</td>
+                <td>{{ participant.code }}</td>
                 <td>{{ participant.nom }}</td>
                 <td>{{ participant.prenom }}</td>
+                <td>{{ participant.cin }}</td>
+                <td>{{ participant.tel }}</td>
                 <td>{{ participant.password }}</td>
                 <td>{{ participant.lieutravail }}</td>
                 <td>{{ participant.email }}</td>
@@ -63,6 +70,7 @@
                 <td>{{ participant.fonction }}</td>
                 <td>{{ participant.sexe }}</td>
                 <td>{{ participant.confirmation }}</td>
+                <td>{{ participant.lieu.lieuheb }}</td>
                 <td>{{ participant.agePers }}</td>
                 <td>{{ participant.matricule }}</td>
                 <td>

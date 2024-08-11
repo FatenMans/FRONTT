@@ -28,44 +28,44 @@ export class HeaderComponent implements OnInit {
 
 
 
-  becomeInternalTrainer(): void {
+  // becomeInternalTrainer(): void {
 
-   
-    if (this.selectedFile) {
-      const user = JSON.parse(localStorage.getItem('user')!);
-      console.log(user)
-      const participant = { nom: user?.userName };
-       // Replace with the actual name or retrieve it dynamically
-      this.participantService.AddFileToPart(participant.nom, this.selectedFile).subscribe(
-        response => {
-          console.log('Participant updated successfully', response);
-          this.closeModal();
 
-        },
-        error => {
-          console.error('Error updating participant', error);
-        }
-      );
-    } else {
-      console.error('No file selected');
-    }
-    this.demandeService.createDemande({ dateDemande: new Date() }).subscribe(res => {
-      console.log(res)
-      Swal.fire({
-        icon: 'success',
-        title: 'Demande envoyée avec succès',
-        
+  //   if (this.selectedFile) {
+  //     const user = JSON.parse(localStorage.getItem('user')!);
+  //     console.log(user)
+  //     const participant = { nom: user?.userName };
+  //      // Replace with the actual name or retrieve it dynamically
+  //     this.participantService.AddFileToPart(participant.nom, this.selectedFile).subscribe(
+  //       response => {
+  //         console.log('Participant updated successfully', response);
+  //         this.closeModal();
 
-      })
-    }, err => {
-      console.log(err)
-      Swal.fire({
-        icon: 'error',
-        title: 'Vous avez déja envoyé une demande',
-        
-      })
-    })
-  }
+  //       },
+  //       error => {
+  //         console.error('Error updating participant', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('No file selected');
+  //   }
+  //   this.demandeService.createDemande({ dateDemande: new Date() }).subscribe(res => {
+  //     console.log(res)
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: 'Demande envoyée avec succès',
+
+
+  //     })
+  //   }, err => {
+  //     console.log(err)
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Vous avez déja envoyé une demande',
+
+  //     })
+  //   })
+  // }
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
@@ -83,8 +83,8 @@ export class HeaderComponent implements OnInit {
     document.body.classList.remove('modal-open');
     document.querySelector('.modal-backdrop')?.remove();
   }
-//ki nenzel aal buton nsaker el interface Modal
-onFileSelected(event: any): void {
-  this.selectedFile = event.target.files[0];
-}
+  //ki nenzel aal buton nsaker el interface Modal
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
 }

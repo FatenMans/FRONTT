@@ -15,7 +15,7 @@ export class DemandeService {
 
   constructor(private http: HttpClient) { }
 
-  createDemande(demande: any): Observable<any> {
+  createDemande(demande: any, themeId: number): Observable<any> {
     // Récupérer l'email de l'utilisateur connecté depuis le localStorage
     const user = JSON.parse(localStorage.getItem('user')!);
     const nom = user?.userName;  // Ajouter une vérification pour éviter les erreurs si 'user' est null
@@ -26,7 +26,7 @@ export class DemandeService {
     const params = new HttpParams().set('nom', nom);
 
     // Envoyer la demande avec l'email en tant que paramètre
-    return this.http.post<any>(`${this.apiUrl}/create`, demande, { params });
+    return this.http.post<any>(`${this.apiUrl}/create/${themeId}`, demande, { params });
   }
 
   getAllDemandes(): Observable<Demande[]> {

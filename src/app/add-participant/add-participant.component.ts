@@ -30,6 +30,9 @@ export class AddParticipantComponent implements OnInit {
   formModel = this.formBuilder.group({
     nom: ['', Validators.required],
     prenom: ['', Validators.required],
+    code: ['', Validators.required],
+    cin: ['', Validators.required],
+    tel: ['', Validators.required],
 
     lieutravail: ['', Validators.required],
     email: ['', Validators.required],
@@ -66,10 +69,12 @@ export class AddParticipantComponent implements OnInit {
     this.lieuhebService.getLieu().subscribe((data: any[]) => {
       console.log('Lieux data:', data); // Log data here
       this.lieuheb = data;
+      console.log('Updated lieuheb:', this.lieuheb); // Verify the data is assigned
     }, error => {
       console.error('Error fetching lieux:', error);
     });
   }
+  
 
 
   get f() { return this.formModel.controls; }

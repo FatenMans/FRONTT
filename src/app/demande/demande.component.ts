@@ -6,6 +6,7 @@ import { DemandeService } from 'src/app/_services/demande.service';
 import { AuthService } from '../_auth/auth.service';
 import { ParticipantService } from '../_services/participant.service';
 import { Demande } from '../models/demande';
+import { ThemeService } from '../_services/theme.service';
 
 @Component({
   selector: 'app-demande',
@@ -18,7 +19,8 @@ export class DemandeComponent implements OnInit {
   submitted = false;
   participants: any[] = [];
   participantId: number | null = null; // To store the current participant ID
-
+  themes: any[] = [];
+  themeId: any
   FormModel = this.formBuilder.group({
     // participantId: [null, Validators.required],
     dateDemande: [new Date(), Validators.required],
@@ -27,6 +29,7 @@ export class DemandeComponent implements OnInit {
     motivation: ['', Validators.required],
     objectifs: ['', Validators.required],
     selectedFile: [],
+    themeId: [, Validators.required], // Changed to single themeId
 
   });
 
@@ -35,10 +38,12 @@ export class DemandeComponent implements OnInit {
     private router: Router,
     private demandeService: DemandeService,
     private authService: AuthService,
-    private participantService: ParticipantService
+    private participantService: ParticipantService,
+    private themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
+    this.loadThemes();
     // Fetch participants if needed for dropdown
     // this.getParticipants();
 
@@ -69,7 +74,11 @@ export class DemandeComponent implements OnInit {
   //     }
   //   });
   // }
-
+  loadThemes(): void {
+    this.themeService.getThemes().subscribe(data => {
+      this.themes = data;
+    });
+  }
 
   onFileSelected(event: any): void {
     this.FormModel.value.selectedFile = event.target.files[0];
@@ -93,7 +102,7 @@ export class DemandeComponent implements OnInit {
     const participant = { nom: user?.userName };
     // Replace with the actual name or retrieve it dynamically
 
-
+//nzid theme
 
     this.participantService.AddFileToPart(participant.nom, this.FormModel.value.selectedFile!).subscribe(
       response => {
@@ -104,7 +113,7 @@ export class DemandeComponent implements OnInit {
         console.error('Error updating participant', error);
       }
     );
-    this.demandeService.createDemande(this.FormModel.value).subscribe(
+    this.demandeService.createDemande(this.FormModel.value, this.FormModel.value.themeId!).subscribe(
       res => {
 
         Swal.fire({
@@ -113,7 +122,6 @@ export class DemandeComponent implements OnInit {
           title: 'Demande ajoutée avec succès',
           showConfirmButton: true,
         });
-        this.router.navigate(['/list-demande']);
       },
       err => {
         Swal.fire({

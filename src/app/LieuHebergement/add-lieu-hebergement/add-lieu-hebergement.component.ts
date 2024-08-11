@@ -35,7 +35,7 @@ export class AddLieuHebergementComponent {
         id: 0  // ou toute autre valeur par défaut appropriée
       };
 
-      this.lieuhebService.createLieuHeb(this.lieuheb).subscribe(
+      this.lieuhebService.createLieuHeb(newLieuheb).subscribe(
         response => {
           console.log('lieuheb ajouté avec succès', response);
           // Rediriger ou afficher un message de succès

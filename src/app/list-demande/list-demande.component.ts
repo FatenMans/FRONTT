@@ -3,6 +3,7 @@ import { DemandeService } from '../_services/demande.service';
 import Swal from 'sweetalert2';
 import { ParticipantService } from '../_services/participant.service';
 import { saveAs } from 'file-saver';
+import { FormateurService } from '../_services/formateur.service';
 
 @Component({
   selector: 'app-list-demande',
@@ -11,13 +12,15 @@ import { saveAs } from 'file-saver';
 })
 export class ListDemandeComponent implements OnInit {
   demandes: any[] = []; // Assurez-vous que ce type correspond à votre modèle de données
-
+ formateurs: any
   constructor(private demandeService: DemandeService,
-    private participantService: ParticipantService
+    private participantService: ParticipantService,
+    private formateurService: FormateurService
   ) { }
 
   ngOnInit(): void {
     this.getAlldemande();
+    this.getAllFormateurs(); 
   }
 
   getAlldemande(): void {
@@ -31,7 +34,18 @@ export class ListDemandeComponent implements OnInit {
       }
     );
   }
-  
+  getAllFormateurs(): void {
+    this.formateurService.getFormateurs().subscribe(
+      data => {
+        console.log('Formateurs fetched from backend:', data);
+        this.formateurs = data;
+      },
+      err => {
+        console.error('Error fetching formateurs', err);
+      }
+    );
+  }
+
 
 
   refuserDemande(id: number): void {

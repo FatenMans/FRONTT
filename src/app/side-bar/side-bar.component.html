@@ -21,7 +21,7 @@
                         <li><a routerLink="/add-Formateur" routerLinkActive="active">Add Formateur</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" *ngIf="role=='User'">
+                <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleFormations()">
                         <span class="micon dw dw-library"></span><span class="mtext">Formations</span>
                     </a>

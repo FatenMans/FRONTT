@@ -1,5 +1,3 @@
-<!-- participant-list.component.html -->
-
 <app-header></app-header>
 <app-side-bar></app-side-bar>
 <div class="main-container">
@@ -20,16 +18,19 @@
           </div>
         </div>
       </div>
+
       <div class="pd-20 card-box mb-30">
         <div class="clearfix mb-20">
           <div class="pull-left">
             <h4 class="text-blue h4">Liste des Participants</h4>
           </div>
         </div>
+
         <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
+                <!-- Table Headers -->
                 <th>ID</th>
                 <th>Code</th>
                 <th>Nom</th>
@@ -54,6 +55,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let participant of participants">
+                <!-- Table Data -->
                 <td>{{ participant.id }}</td>
                 <td>{{ participant.code }}</td>
                 <td>{{ participant.nom }}</td>
@@ -76,14 +78,40 @@
                 <td>
                   <button class="btn-custom btn-custom-modifier" (click)="updateParticipant(participant.id)">Modifier</button>
                   <button class="btn-custom btn-custom-supprimer" (click)="deleteParticipant(participant.id)">Supprimer</button>
-                  
-                  <!-- Conditionally render the Accept and Convert button -->
-                 
+                  <button class="btn-custom btn-custom-inviter" data-toggle="modal" data-target="#inviteModal" (click)="setParticipantToInvite(participant.id)">Inviter</button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Invite Modal -->
+<div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inviteModalLabel">Invite to Formation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formationSelect">Select Formation:</label>
+            <select class="form-control" id="formationSelect" [(ngModel)]="selectedFormationId" name="formation">
+              <option *ngFor="let formation of formations" [value]="formation.id">{{ formation.nom }}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="inviteParticipant()">Invite</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

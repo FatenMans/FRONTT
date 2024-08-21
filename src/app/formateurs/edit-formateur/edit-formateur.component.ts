@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormateurService } from 'src/app/_services/formateur.service';
+import { ThemeService } from 'src/app/_services/theme.service';
 import { Formateur } from 'src/app/models/formateur.model';
 import Swal from 'sweetalert2';
 
@@ -16,10 +17,12 @@ export class EditFormateurComponent implements OnInit {
   formateur: Formateur = new Formateur();
 
   submitted = false;
+themes: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private formateurService: FormateurService,
+    private themeService: ThemeService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -33,10 +36,12 @@ export class EditFormateurComponent implements OnInit {
       cin: ['', Validators.required],
       matricule: ['', Validators.required],
       tel: ['', Validators.required],
-      montant: [, Validators.required],
+     
       autorisation: ['', Validators.required],
       typeFormateur: ['', Validators.required],
+      themeId: [, Validators.required], // Changed to single themeId
     });
+    this.loadThemes()
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -52,6 +57,12 @@ export class EditFormateurComponent implements OnInit {
       error: (e) => console.error(e)
     });
   }
+  loadThemes(): void {
+    this.themeService.getThemes().subscribe((data: any[]) => {
+      this.themes = data;
+    });
+  }
+
 
   get f() { return this.formModel.controls; }
 

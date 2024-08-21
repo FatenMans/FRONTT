@@ -11,6 +11,10 @@
                         </div>
                         <form [formGroup]="FormModel" (ngSubmit)="ModifierCabinet()">
                             <div class="form-group">
+                                <label for="adress">NomCbinet</label>
+                                <input id="adress" formControlName="nomCabinet" class="form-control" />
+                            </div>
+                            <div class="form-group">
                                 <label for="adress">Adresse</label>
                                 <input id="adress" formControlName="adress" class="form-control" />
                             </div>

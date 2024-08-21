@@ -1,3 +1,5 @@
+import { Participant } from "./participant.model";
+
 export interface PlanFormation {
   id: number;
   code_action: string;
@@ -9,10 +11,11 @@ export interface PlanFormation {
   formation: any; // Ajuste selon ton modèle
   formateur: any; // Ajuste selon ton modèle
   theme: any; // Ajuste selon ton modèle
-  participants: any[]; // Ajuste selon ton modèle
+  // Ajuste selon ton modèle
   lieu: { lieux: string }; // Adjust according to the actual structure
   lieuxHebergement: any[]; // Ajuste selon ton modèle
   cabinetFormation: any; // Ajuste selon ton modèle
   lastModifiedDate?: string;
   lastModifiedBy?: string;
+  participants: Participant[];
 }

@@ -21,6 +21,7 @@ export class ListFormationsComponent implements OnInit {
   isUser: boolean = false;
   userId: any;
   participantnom: any;
+  participants: any[] = [];
   role:any;
   themes:any
 
@@ -38,6 +39,7 @@ export class ListFormationsComponent implements OnInit {
       // Autres contrôles de formulaire ici
     });
   }
+
   
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -77,6 +79,7 @@ export class ListFormationsComponent implements OnInit {
         });
     }
   }
+ 
 
   private getFormations() {
     this.formationService.getFormation().subscribe(
@@ -92,6 +95,9 @@ export class ListFormationsComponent implements OnInit {
     console.log(this.role)
 
   }
+ 
+  
+
   deleteFormation(id: number) {
     Swal.fire({
       title: 'Êtes-vous sûr de vouloir supprimer cette formation?',

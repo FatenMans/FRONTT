@@ -23,6 +23,8 @@ export class EditCabinetComponent implements OnInit {
     private router: Router
   ) {
     this.FormModel = this.formBuilder.group({
+      nomCabinet: ['', Validators.required],
+   
       adress: ['', Validators.required],
       contact: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

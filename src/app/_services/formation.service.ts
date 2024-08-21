@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Formation } from '../models/formation.model';
+import { Participant } from '../models/participant.model';
 
 
 @Injectable({
@@ -39,7 +40,13 @@ export class FormationService {
     return this.http.get(`${this.apiUrl}/formations/${id}`);
   }
 
- 
+  inviteParticipant(formationId: number, participantId: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/formations/${formationId}/invite/${participantId}`, {});
+  }
+
+  getParticipants(formationId: number): Observable<Participant[]> {
+    return this.http.get<Participant[]>(`${this.apiUrl}/formations/${formationId}/participants`);
+  }
 }
 
 

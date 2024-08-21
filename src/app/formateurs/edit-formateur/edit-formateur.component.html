@@ -48,10 +48,29 @@
                                 <label for="montant">Montant</label>
                                 <input id="montant" formControlName="montant" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label for="typeFormateur">Type de formateur</label>
-                                <input id="typeFormateur" formControlName="typeFormateur" class="form-control" />
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-2 col-form-label" for="input-type-formation">Type de
+                                    Formateur</label>
+                                <div class="col-sm-12 col-md-10">
+                                    <select class="form-control" id="input-type-formation"
+                                        formControlName="typeformation">
+                                        <option value="Intra">Interne</option>
+                                        <option value="Extra">Externe</option>
+                                    </select>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label for="montant">Montant</label>
+                                <input id="montant" formControlName="montant" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="themeId">Theme</label>
+                                <select id="themeId" formControlName="themeId" class="form-control">
+                                    <option *ngFor="let theme of themes " [value]="theme.id">{{ theme.theme
+                                        }}</option>
+                                </select>
+                            </div>
+                            
                            
                             <button type="submit" class="btn btn-primary" (click)="ModifierFormateur()">Modifier
                                 Formateur</button>

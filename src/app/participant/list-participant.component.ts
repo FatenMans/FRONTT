@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ParticipantService } from '../_services/participant.service';
+import { FormationService } from '../_services/formation.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -8,16 +9,23 @@ import Swal from 'sweetalert2';
   templateUrl: './list-participant.component.html',
   styleUrls: ['./list-participant.component.css']
 })
-export class ListParticipantComponent {
+export class ListParticipantComponent implements OnInit {
 
   participants: any[] = [];
+  formations: any[] = [];
+  selectedFormationId: number | null = null;
+  selectedParticipantId: number | null = null; // Added to track the participant being invited
   role: string = ''; // Add logic to set the user's role
 
-
-  constructor(private participantService: ParticipantService, private router: Router) { }
+  constructor(
+    private participantService: ParticipantService,
+    private formationService: FormationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getParticipants();
+    this.getFormations();
   }
 
   private getParticipants() {
@@ -37,8 +45,65 @@ export class ListParticipantComponent {
     );
   }
 
+  private getFormations() {
+    this.formationService.getFormation().subscribe(
+      data => {
+        this.formations = data;
+      },
+      error => {
+        console.error('Error fetching formations:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur lors du chargement des formations',
+          text: 'Veuillez réessayer plus tard.',
+        });
+      }
+    );
+  }
 
+  setParticipantToInvite(participantId: number) {
+    this.selectedParticipantId = participantId;
+  }
 
+  inviteParticipant() {
+    if (!this.selectedFormationId) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Veuillez sélectionner une formation',
+        text: 'Vous devez choisir une formation avant d\'inviter un participant.',
+      });
+      return;
+    }
+
+    if (this.selectedParticipantId === null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Participant non sélectionné',
+        text: 'Veuillez sélectionner un participant.',
+      });
+      return;
+    }
+
+    this.formationService.inviteParticipant(this.selectedParticipantId, this.selectedFormationId).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Participant invité avec succès',
+          showConfirmButton: true,
+        });
+        this.selectedParticipantId = null;  // Reset after inviting
+        this.selectedFormationId = null;    // Reset the formation selection
+      },
+      error => {
+        console.error('Error inviting participant:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur lors de l\'invitation du participant',
+          text: 'Veuillez réessayer plus tard.',
+        });
+      }
+    );
+  }
 
   deleteParticipant(id: number) {
     Swal.fire({
@@ -75,5 +140,4 @@ export class ListParticipantComponent {
   updateParticipant(id: number) {
     alert('Update participant with ID: ' + id); // This can be updated to navigate to an edit page if required
   }
-
 }

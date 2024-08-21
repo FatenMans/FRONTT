@@ -53,6 +53,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,8 @@ import { MatButtonModule } from '@angular/material/button';
     EvalComponent,
 DemandeComponent,
 ListDemandeComponent,
-EnrolledFormationsComponent    
+EnrolledFormationsComponent,
+  
     
    
     

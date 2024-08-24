@@ -21,7 +21,7 @@
                         <li><a routerLink="/add-Formateur" routerLinkActive="active">Add Formateur</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" *ngIf="role=='Admin'">
+                <li class="dropdown">
                     <a class="dropdown-toggle" (click)="toggleFormations()">
                         <span class="micon dw dw-library"></span><span class="mtext">Formations</span>
                     </a>
@@ -58,7 +58,7 @@
                         <span class="micon dw dw-apartment"></span><span class="mtext">Participant</span>
                     </a>
                     <ul class="submenu" id="Participant">
-                        <li  ><a routerLink="/list-participant">List participant</a></li>
+                        <li><a routerLink="/list-participant">List participant</a></li>
                         <li><a routerLink="/add-participant">Add participant</a></li>
                     </ul>
                 </li>
@@ -98,19 +98,19 @@
                         <li><a routerLink="/add-lieu-hebergement">Add Lieu</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"  *ngIf="role=='Admin'">
+                <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleDemande()">
                         <span class="micon dw dw-apartment"></span><span class="mtext"> Demande</span>
                     </a>
                     <ul class="submenu" id="Demande">
-                        <li ><a routerLink="/list-demande"> List-Demande</a></li>
+                        <li><a routerLink="/list-demande"> List-Demande</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" *ngIf="role=='User'">
                     <a class="dropdown-toggle" routerLink="/enrolled-formations">
                         <span class="micon dw dw-apartment"></span><span class="mtext"> Formations Enrôlées</span>
                     </a>
-                   
+
                 </li>
                 <!-- Other menu items -->
             </ul>

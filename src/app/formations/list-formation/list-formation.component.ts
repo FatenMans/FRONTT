@@ -17,13 +17,13 @@ import { ParticipantService } from 'src/app/_services/participant.service';
 export class ListFormationsComponent implements OnInit {
   [x: string]: any;
   formations: any[] = [];
-  formation : any
+  formation: any
   isUser: boolean = false;
   userId: any;
   participantnom: any;
   participants: any[] = [];
-  role:any;
-  themes:any
+  role: any;
+  themes: any
 
   constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder, private themeService: ThemeService,
     private participantService: ParticipantService
@@ -31,8 +31,8 @@ export class ListFormationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormations();
-   
-   
+
+
     this.getRole()
     this['myForm'] = this.fb.group({
       typeFormateur: new FormControl('')
@@ -40,46 +40,53 @@ export class ListFormationsComponent implements OnInit {
     });
   }
 
-  
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
-    console.log(user)
+    console.log(user);
     const participant = { nom: user?.userName };
 
     if (participant.nom) {
-        this.formationService.addParticipantToFormation(formationId, participant.nom).subscribe(
-
+      Swal.fire({
+        title: 'Confirmation',
+        text: 'Êtes-vous sûr de vouloir participer à cette formation?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.formationService.addParticipantToFormation(formationId, participant.nom).subscribe(
             () => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Succès',
-                    text: 'Vous avez participé avec succès à la formation.',
-                  
-                    confirmButtonText: 'OK'
-
-                });
-                this.router.navigate(['/enrolled-formations'])
+              Swal.fire({
+                icon: 'success',
+                title: 'Succès',
+                text: 'Vous avez participé avec succès à la formation.',
+                confirmButtonText: 'OK'
+              });
+              this.router.navigate(['/enrolled-formations']);
             },
             error => {
-                console.error('Erreur lors de l\'ajout du participant à la formation:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erreur',
-                    text: 'Une erreur est survenue. Veuillez réessayer.',
-                    confirmButtonText: 'OK'
-                });
+              console.error('Erreur lors de l\'ajout du participant à la formation:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Une erreur est survenue. Veuillez réessayer.',
+                confirmButtonText: 'OK'
+              });
             }
-        );
+          );
+        }
+      });
     } else {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Avertissement',
-            text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
-            confirmButtonText: 'OK'
-        });
+      Swal.fire({
+        icon: 'warning',
+        title: 'Avertissement',
+        text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
+        confirmButtonText: 'OK'
+      });
     }
   }
- 
+
 
   private getFormations() {
     this.formationService.getFormation().subscribe(
@@ -95,8 +102,8 @@ export class ListFormationsComponent implements OnInit {
     console.log(this.role)
 
   }
- 
-  
+
+
 
   deleteFormation(id: number) {
     Swal.fire({

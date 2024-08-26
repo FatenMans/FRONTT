@@ -14,8 +14,8 @@ export class FormateurService {
 
   createFormateur(formateur: any, themeId: number): Observable<any> {
     // Créer un objet contenant les données à envoyer
- 
-    
+
+
     // Envoyer la requête POST avec les données au format JSON et le thèmeId en tant que paramètre de requête
     return this.http.post<any>(`${this.apiUrl}/formateurs/create/${themeId}`, formateur);
   }
@@ -35,7 +35,7 @@ export class FormateurService {
     return this.http.get(`${this.apiUrl}/formateurs/${id}`);
   }
 
-  searchFormateur(nom:string):Observable<any[]>{
+  searchFormateur(nom: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/formateurs/search/${nom}`);
   }
   getFormateurs(theme?: string): Observable<any[]> {

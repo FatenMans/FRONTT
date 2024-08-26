@@ -33,6 +33,7 @@ export class ListFormateursComponent implements OnInit {
   }
 
   loadFormateurs(theme?: string): void {
+
     this.formateurService.getFormateurs(theme).subscribe(
       data => {
         this.formateurs = data;
@@ -43,16 +44,17 @@ export class ListFormateursComponent implements OnInit {
       }
     );
   }
-  
+
 
   onThemeChange(): void {
     this.loadFormateurs(this.selectedTheme);
   }
-  onThemeSelect(theme: any): void {
-    this.selectedTheme = theme.theme; // Ensure theme is the correct field
-    this.loadFormateurs(this.selectedTheme); // Call the service with the selected theme
+  onThemeSelect(event: Event): void {
+    const selectedTheme = (event.target as HTMLSelectElement).value;
+    console.log(selectedTheme); // Perform your logic with the selected theme
+    this.loadFormateurs(selectedTheme); // Call the service with the selected theme
   }
-  
+
 
   searchFormateur(): void {
     if (this.inputSearch.trim() !== '') {
@@ -83,7 +85,7 @@ export class ListFormateursComponent implements OnInit {
             title: 'Formateur supprimé avec succès',
             showConfirmButton: true,
           });
-          this.loadFormateurs(this.selectedTheme); // Reload with current theme filter
+          this.loadFormateurs(); // Reload with current theme filter
         }, err => {
           Swal.fire({
             icon: 'error',

@@ -59,6 +59,20 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="input-nom">Password</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input type="password" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="input-nom"
+                                placeholder="password" formControlName="password" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div>Le password est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="input-prenom">Prénom</label>
                         <div class="col-sm-12 col-md-10">
@@ -137,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                 
+
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="input-type-formateur">Type de
                             Formateur</label>

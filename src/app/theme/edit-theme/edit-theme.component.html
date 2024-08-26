@@ -20,18 +20,25 @@
                                     <label for="theme">Theme</label>
                                     <input type="text" class="form-control" id="theme" formControlName="theme">
                                 </div>
-                                <div class="form-group">
-                                    <label for="typeThemeIntraInter">TypeFormation</label>
-                                    <input type="text" class="form-control" id="TypeFormation"
-                                        formControlName="TypeFormation">
+
+                                <div class="form-group ">
+                                    <label for="select-typeThemeIntraInter">
+                                        Type de formation</label>
+                                    <select class="form-control" id="select-typeFormation"
+                                        formControlName="typeFormation">
+                                        <option value="">Select Type</option>
+                                        <option value="Inter">Interne</option>
+                                        <option value="Intra">Externe</option>
+                                    </select>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="accord">Accord</label>
                                     <input type="text" class="form-control" id="accord" formControlName="accord">
                                 </div>
-                               
+
                                 <!-- Add other fields here if necessary -->
                                 <button type="submit" class="btn btn-primary" (click)="modifierTheme()">Modifier
-                                    Formation</button>
+                                    Theme</button>
                             </form>
                         </div>

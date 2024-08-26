@@ -27,7 +27,7 @@
                     </a>
                     <ul id="Formation" class="submenu">
                         <li><a routerLink="/list-Formation">List Formation</a></li>
-                        <li><a routerLink="/add-Formation">Add Formation</a></li>
+                        <li *ngIf="role=='Admin'"><a routerLink="/add-Formation">Add Formation</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" *ngIf="role=='Admin'">

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PdfService } from '../_services/pdf.service';
+import { ActivatedRoute } from '@angular/router';
+import { EvaluationService } from '../_services/evaluation.service';
 
 @Component({
   selector: 'app-eval',
@@ -7,34 +9,28 @@ import { PdfService } from '../_services/pdf.service';
   styleUrls: ['./eval.component.css']
 })
 export class EvalComponent {
-  pdfSrc: string | ArrayBuffer | null = null;
+  formationId: number | null = null;
+  evaluation: any = {};  // Initialize an evaluation object
 
-  constructor(private pdfService: PdfService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private evaluationService: EvaluationService
+  ) {}
 
-  uploadFile(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.pdfService.uploadFile(file).subscribe(
-        response => {
-          console.log('File uploaded successfully', response);
-          // Assuming response contains the URL or identifier of the uploaded file
-          // You may need to adjust based on your backend response
-          this.loadPdf(response.fileName);
-        },
-        error => {
-          console.error('Error uploading file', error);
-        }
-      );
-    }
+  ngOnInit(): void {
+    this.formationId = Number(this.route.snapshot.paramMap.get('formationId'));
   }
 
-  loadPdf(fileName: string): void {
-    this.pdfService.getPdf(fileName).subscribe(blob => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.pdfSrc = reader.result;
-      };
-      reader.readAsDataURL(blob);
-    });
+  submitEvaluation() {
+    if (this.formationId !== null) {
+      this.evaluationService.createEvaluation(1, this.formationId, this.evaluation)
+        .subscribe(response => {
+          console.log('Evaluation submitted successfully', response);
+          // Handle success, navigate back or show a success message
+        }, error => {
+          console.error('Error submitting evaluation', error);
+          // Handle error
+        });
+    }
   }
 }

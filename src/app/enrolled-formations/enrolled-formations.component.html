@@ -32,6 +32,7 @@
                                 <th>Type Formation</th>
                                 <th>Frais Total Formateur</th>
                                 <th>Nom Formateur</th>
+                                <th>Evaluation</th>
                                
                             </tr>
                         </thead>
@@ -48,6 +49,8 @@
                                 <td>{{ enrolledFormation.fraisTotalFormateur }}</td>
                                 <td>{{ enrolledFormation.formateur.nom }}</td>
                                
+                                    <button (click)="openEvaluationForm(formation?.id)">Evaluer</button>
+                                  
                             </tr>
                         </tbody>
                     </table>

@@ -1,9 +1,21 @@
-<div>
-  <h2>Upload PDF</h2>
-  <input type="file" (change)="uploadFile($event)" />
-</div>
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<h2>Evaluation Form</h2>
+<form (ngSubmit)="submitEvaluation()">
+  <div>
+    <label>Quality of Content:</label>
+    <input type="radio" name="quality" value="Excellent"> Excellent
+    <input type="radio" name="quality" value="Good"> Good
+    <input type="radio" name="quality" value="Average"> Average
+    <input type="radio" name="quality" value="Poor"> Poor
+  </div>
+  <!-- Add more questions as needed -->
+  
+  <div>
+    <label>Additional Comments:</label>
+    <textarea [(ngModel)]="evaluation.comments" name="comments"></textarea>
+  </div>
+  
+  <button type="submit">Submit Evaluation</button>
+</form>
 
-<div *ngIf="pdfSrc">
-  <h2>View PDF</h2>
-  <iframe [src]="pdfSrc" width="100%" height="800px"></iframe>
-</div>

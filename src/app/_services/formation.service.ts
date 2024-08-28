@@ -47,6 +47,9 @@ export class FormationService {
   getParticipants(formationId: number): Observable<Participant[]> {
     return this.http.get<Participant[]>(`${this.apiUrl}/formations/${formationId}/participants`);
   }
+  searchByTheme(theme: string): Observable<Formation[]> {
+    return this.http.get<Formation[]>(`${this.apiUrl}/search/${theme}`);
+  }
 }
 
 

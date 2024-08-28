@@ -1,3 +1,6 @@
+import { Formateur } from "./formateur.model";
+import { Theme } from "./theme.model";
+
 export interface Formation {
     id?: number;
     numGroupe: number;
@@ -10,7 +13,9 @@ export interface Formation {
     dureeParJour?: number;
     formateurId: number; // ID du formateur
     lieuId: number; // ID du lieu
-    themeId: number; // ID du thème
+    themeId: number; 
+    theme: Theme;  
+    formateur?: Formateur;
     participants: number[]; // Liste des IDs des participants
     lastModifiedDate?: string;
     lastModifiedBy?: string;
@@ -28,6 +33,7 @@ export class FormationImpl implements Formation {
         public formateurId: number,
         public lieuId: number,
         public themeId: number,
+        public theme: Theme,
         public participants: number[],
         public dureeParJour?: number // Optionnel
     ) { }

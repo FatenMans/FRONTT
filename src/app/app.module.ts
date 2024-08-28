@@ -44,13 +44,13 @@ import { EditThemeComponent } from './theme/edit-theme/edit-theme.component';
 import { EditCabinetComponent } from './cabinetformation/edit-cabinet/edit-cabinet.component';
 import { ListActionformationComponent } from './PlanFormation/list-actionformation/list-actionformation.component';
 import { AddActionFormationComponent } from './PlanFormation/add-actionformation/add-actionformation.component';
-import { EvalComponent } from './eval/eval.component';
 import { DemandeComponent } from './demande/demande.component';
 import { ListDemandeComponent } from './list-demande/list-demande.component';
 import { EnrolledFormationsComponent } from './enrolled-formations/enrolled-formations.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { EvalComponent } from './eval/eval.component';
 
 
 
@@ -96,6 +96,7 @@ import { MatButtonModule } from '@angular/material/button';
 DemandeComponent,
 ListDemandeComponent,
 EnrolledFormationsComponent,
+
   
     
    

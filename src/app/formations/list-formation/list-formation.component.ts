@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { HttpParams } from '@angular/common/http';
 import { ThemeService } from 'src/app/_services/theme.service';
 import { ParticipantService } from 'src/app/_services/participant.service';
+import { Formation } from 'src/app/models/formation.model';
 
 
 @Component({
@@ -16,14 +17,17 @@ import { ParticipantService } from 'src/app/_services/participant.service';
 })
 export class ListFormationsComponent implements OnInit {
   [x: string]: any;
-  formations: any[] = [];
+
   formation : any
   isUser: boolean = false;
   userId: any;
   participantnom: any;
   participants: any[] = [];
   role:any;
-  themes:any
+  formations: Formation[] = [];
+  filteredformations: Formation[] = [];
+  themes: any[] = [];
+  selectedTheme: string = '';
 
   constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder, private themeService: ThemeService,
     private participantService: ParticipantService
@@ -31,6 +35,9 @@ export class ListFormationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormations();
+    this['getThemes']();
+    this.loadFormations();
+    this.loadThemes();
    
    
     this.getRole()
@@ -39,7 +46,33 @@ export class ListFormationsComponent implements OnInit {
       // Autres contrôles de formulaire ici
     });
   }
-
+  private getThemes() {
+    this.themeService.getThemes().subscribe(
+      data => {
+        this.themes = data;
+        console.log('Themes fetched from backend:', data);
+      }
+    );
+  }
+  loadThemes(): void {
+    this.themeService.getThemes().subscribe(data => {
+      this.themes = data;
+    });
+  }
+  private getFormation() {
+    this.formationService.getFormation().subscribe(data => {
+      this.formation = data;
+      this['filteredFormation'] = data;
+    });
+  }
+  searchByTheme() {
+    if (this.selectedTheme) {
+      this.filteredformations = this.formations.filter(formation => formation.theme.theme === this.selectedTheme);
+    } else {
+      this.filteredformations = this.formations;
+    }
+  }
+  
   
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -95,7 +128,17 @@ export class ListFormationsComponent implements OnInit {
     console.log(this.role)
 
   }
- 
+  loadFormations(): void {
+    this.formationService.getFormation().subscribe(
+      (data: Formation[]) => {
+        this.formations = data;
+        this.filteredformations = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des formations', error);
+      }
+    );
+  }
   
 
   deleteFormation(id: number) {

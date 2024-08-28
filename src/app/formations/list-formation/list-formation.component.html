@@ -25,6 +25,24 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Recherche par Thème</h4>
+                    </div>
+                </div>
+                <form (ngSubmit)="searchByTheme()">
+                    <div class="form-group">
+                        <label for="themeSelect">Choisir un thème</label>
+                        <select id="themeSelect" class="form-control" [(ngModel)]="selectedTheme" name="themeSelect">
+                            <option value="">Tous les thèmes</option>
+                            <option *ngFor="let theme of themes" [value]="theme.theme">{{ theme.theme }}</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </form>
+            </div>
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix mb-20">
                     <div class="pull-left">
@@ -51,7 +69,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let formation of formations">
+                            <tr *ngFor="let formation of filteredformations"
+                            [ngClass]="{'highlighted-row': formation.theme.theme === selectedTheme}">
                                 <td>{{ formation.id }}</td>
                                 <td>{{ formation.nomFormation }}</td>
                                 <td>{{ formation.theme.theme }}</td>
@@ -61,7 +80,7 @@
                                 <td>{{ formation.duree }}</td>
                                 <td>{{ formation.typeformation }}</td>
                                 <td>{{ formation.fraisTotalFormateur }}</td>
-                                <td>{{ formation.formateur.nom }}</td>
+                                <td>{{ formation.formateur?.nom }}</td>
                                 <td>{{ formation.lastModifiedDate | date: 'short' }}</td>
                                 <td>{{ formation.lastModifiedBy }}</td>
                                 <td>
@@ -69,8 +88,8 @@
                                     <button class="btn-custom btn-custom-modifier"
                                        *ngIf="role=='Admin'"  routerLink="/edit-formation/{{formation.id}}">Modifier</button>
                                     <button class="btn-custom btn-custom-supprimer"
-                                    *ngIf="role=='Admin'" (click)="deleteFormation(formation.id)">Supprimer</button>
-                                        <button  class="btn-custom btn-custom-participer" *ngIf="role=='User'" (click)="participer(formation.id)">Participer</button>
+                                        *ngIf="role=='Admin'" (click)="formation.id && deleteFormation(formation.id)">Supprimer</button>
+                                        <button  class="btn-custom btn-custom-participer" *ngIf="role=='User'" (click)="participer(formation.id ?? 0)">Participer</button>
 
                                 </td>
 

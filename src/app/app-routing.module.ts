@@ -58,7 +58,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'participant', component: ParticipantService, canActivate: [AuthGuard], data: { roles: ['PARTICIPANT'] } },
   { path: 'add-actionformation', component: AddActionFormationComponent },
-  { path: 'eval', component: EvalComponent },
+  { path: 'eval/:formationId', component: EvalComponent },
+
+
   { path: 'list-actionformation', component: ListActionformationComponent },
   { path: 'lieu', component: LieuComponent },
   { path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
@@ -76,7 +78,6 @@ const routes: Routes = [
   { path: 'demande', component: DemandeComponent},
   { path: 'list-demande', component: ListDemandeComponent},
   { path: 'enrolled-formations', component: EnrolledFormationsComponent},
-
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
  
 

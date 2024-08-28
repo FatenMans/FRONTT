@@ -14,8 +14,11 @@ export class ListParticipantComponent implements OnInit {
   participants: any[] = [];
   formations: any[] = [];
   selectedFormationId: number | null = null;
-  selectedParticipant!: string
+  selectedParticipant: string = '';
+  selectedParticipantId: number | null = null;
   role: string = ''; // Add logic to set the user's role
+
+
 
   constructor(
     private participantService: ParticipantService,
@@ -49,7 +52,7 @@ export class ListParticipantComponent implements OnInit {
     this.formationService.getFormation().subscribe(
       data => {
         this.formations = data;
-        console.log(this.formations)
+        console.log(this.formations);
       },
       error => {
         console.error('Error fetching formations:', error);
@@ -67,85 +70,43 @@ export class ListParticipantComponent implements OnInit {
   }
 
   participer(): void {
-    console.log(this.selectedParticipant)
-    console.log(this.selectedFormationId)
+    console.log(this.selectedParticipant);
+    console.log(this.selectedFormationId);
     if (this.selectedFormationId) {
-        this.formationService.addParticipantToFormation(this.selectedFormationId, this.selectedParticipant).subscribe(
-
-            () => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Succès',
-                    text: 'Vous avez participé avec succès à la formation.',
-
-                    confirmButtonText: 'OK'
-
-                });
-                // this.router.navigate(['/enrolled-formations'])
-            },
-            error => {
-                console.error('Erreur lors de l\'ajout du participant à la formation:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erreur',
-                    text: 'Une erreur est survenue. Veuillez réessayer.',
-                    confirmButtonText: 'OK'
-                });
-            }
-        );
-    } else {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Avertissement',
-            text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
+      this.formationService.addParticipantToFormation(this.selectedFormationId, this.selectedParticipant).subscribe(
+        () => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Succès',
+            text: 'Vous avez participé avec succès à la formation.',
             confirmButtonText: 'OK'
-        });
+          });
+        },
+        error => {
+          console.error('Erreur lors de l\'ajout du participant à la formation:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue. Veuillez réessayer.',
+            confirmButtonText: 'OK'
+          });
+        }
+      );
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Avertissement',
+        text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
+        confirmButtonText: 'OK'
+      });
     }
   }
 
-  // inviteParticipant() {
-  //   if (!this.selectedFormationId) {
-  //     Swal.fire({
-  //       icon: 'warning',
-  //       title: 'Veuillez sélectionner une formation',
-  //       text: 'Vous devez choisir une formation avant d\'inviter un participant.',
-  //     });
-  //     return;
-  //   }
 
-  //   if (this.selectedParticipantId === null) {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Participant non sélectionné',
-  //       text: 'Veuillez sélectionner un participant.',
-  //     });
-  //     return;
-  //   }
-
-  //   this.formationService.inviteParticipant(this.selectedParticipantId, this.selectedFormationId).subscribe(
-  //     response => {
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Participant invité avec succès',
-  //         showConfirmButton: true,
-  //       });
-  //       this.selectedParticipantId = null;  // Reset after inviting
-  //       this.selectedFormationId = null;    // Reset the formation selection
-  //     },
-  //     error => {
-  //       console.error('Error inviting participant:', error);
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Erreur lors de l\'invitation du participant',
-  //         text: 'Veuillez réessayer plus tard.',
-  //       });
-  //     }
-  //   );
-  // }
 
   deleteParticipant(id: number) {
     Swal.fire({
-      title: 'Êtes-vous sûr de vouloir supprimer cette participant?',
+      title: 'Êtes-vous sûr de vouloir supprimer ce participant?',
       text: "Vous ne pourrez pas revenir en arrière!",
       icon: 'warning',
       showCancelButton: true,
@@ -176,6 +137,7 @@ export class ListParticipantComponent implements OnInit {
   }
 
   updateParticipant(id: number) {
-    alert('Update participant with ID: ' + id); // This can be updated to navigate to an edit page if required
+    alert('Mise à jour du participant avec ID: ' + id);
+    // Naviguer vers une page d'édition si nécessaire
   }
 }

@@ -17,27 +17,17 @@ import { Formation } from 'src/app/models/formation.model';
 })
 export class ListFormationsComponent implements OnInit {
   [x: string]: any;
-<<<<<<< HEAD
 
-  formation : any
-=======
-  formations: any[] = [];
   formation: any
->>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
   isUser: boolean = false;
   userId: any;
   participantnom: any;
   participants: any[] = [];
-<<<<<<< HEAD
-  role:any;
+  role: any;
   formations: Formation[] = [];
   filteredformations: Formation[] = [];
   themes: any[] = [];
   selectedTheme: string = '';
-=======
-  role: any;
-  themes: any
->>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
 
   constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder, private themeService: ThemeService,
     private participantService: ParticipantService
@@ -45,23 +35,17 @@ export class ListFormationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormations();
-<<<<<<< HEAD
     this['getThemes']();
     this.loadFormations();
     this.loadThemes();
-   
-   
-=======
 
 
->>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
     this.getRole()
     this['myForm'] = this.fb.group({
       typeFormateur: new FormControl('')
       // Autres contrôles de formulaire ici
     });
   }
-<<<<<<< HEAD
   private getThemes() {
     this.themeService.getThemes().subscribe(
       data => {
@@ -88,11 +72,8 @@ export class ListFormationsComponent implements OnInit {
       this.filteredformations = this.formations;
     }
   }
-  
-  
-=======
 
->>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
+
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
     console.log(user);
@@ -155,7 +136,6 @@ export class ListFormationsComponent implements OnInit {
     console.log(this.role)
 
   }
-<<<<<<< HEAD
   loadFormations(): void {
     this.formationService.getFormation().subscribe(
       (data: Formation[]) => {
@@ -167,11 +147,7 @@ export class ListFormationsComponent implements OnInit {
       }
     );
   }
-  
-=======
 
-
->>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
 
   deleteFormation(id: number) {
     Swal.fire({

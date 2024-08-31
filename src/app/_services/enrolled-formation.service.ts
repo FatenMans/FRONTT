@@ -11,7 +11,7 @@ export class EnrolledFormationService {
 
   constructor(private http: HttpClient) { }
 
-  getFormationsByParticipant(participantId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/by-participant/${participantId}`);
+  getFormationsByParticipant(partNom: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/by-participant/${partNom}`);
   }
 }

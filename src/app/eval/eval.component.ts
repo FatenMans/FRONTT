@@ -19,19 +19,19 @@ export class EvalComponent implements OnInit {
     private route: ActivatedRoute,
     private evaluationService: EvaluationService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    
+
   }
 
-  submitEvaluation(): void {
-    this.evaluationService.createEvaluation(this.participantId, this.formationId, this.evaluation)
-      .subscribe(response => {
-        alert('Évaluation soumise avec succès !');
-        this.router.navigate(['/list-eval']); // Redirige vers la liste des formations inscrites
-      }, error => {
-        console.error('Erreur lors de la soumission de l\'évaluation :', error);
-      });
-  }
+  // submitEvaluation(): void {
+  //   this.evaluationService.createEvaluation(this.participantId, this.formationId, this.evaluation)
+  //     .subscribe(response => {
+  //       alert('Évaluation soumise avec succès !');
+  //       this.router.navigate(['/list-eval']); // Redirige vers la liste des formations inscrites
+  //     }, error => {
+  //       console.error('Erreur lors de la soumission de l\'évaluation :', error);
+  //     });
+  // }
 }

@@ -37,7 +37,7 @@ export class AddParticipantComponent implements OnInit {
     lieutravail: ['', Validators.required],
     email: ['', Validators.required],
     datNais: ['', Validators.required],
-    Affectation: ['', Validators.required],
+    affectation: ['', Validators.required],
     codGrad: ['', Validators.required],
     datEmb: ['', Validators.required],
     fonction: ['', Validators.required],

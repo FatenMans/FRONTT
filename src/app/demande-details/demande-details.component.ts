@@ -94,7 +94,8 @@ export class DemandeDetailsComponent implements OnInit {
               icon: 'success',
               title: 'Demande acceptée avec succès',
             });
-
+            this.convertToFormateur()
+            this.route.navigate(['/list-demande']);
           },
           err => {
             Swal.fire({
@@ -103,8 +104,7 @@ export class DemandeDetailsComponent implements OnInit {
             });
           }
         );
-        this.convertToFormateur()
-        this.route.navigate(['/list-demande']);
+
 
       }
     });

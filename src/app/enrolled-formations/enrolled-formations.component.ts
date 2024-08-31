@@ -16,6 +16,7 @@ export class EnrolledFormationsComponent implements OnInit {
   selectedFormation: any = null;
   evaluation: Evaluation = { note: 0, commentaire: '' };
   formation: any
+  participantNom!: string
 
   constructor(
     private enrolledFormationService: EnrolledFormationService,
@@ -24,10 +25,15 @@ export class EnrolledFormationsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.enrolledFormationService.getFormationsByParticipant(this.participantId)
+    const user = localStorage.getItem('user')!;
+    const userObj = JSON.parse(user);
+    this.participantNom = userObj.userName;
+    console.log(this.participantNom)
+
+    this.enrolledFormationService.getFormationsByParticipant(this.participantNom)
       .subscribe(data => {
         this.enrolledFormations = data;
-
+        console.log(this.enrolledFormations)
       });
   }
 
@@ -39,12 +45,11 @@ export class EnrolledFormationsComponent implements OnInit {
       console.error('Formation object is undefined');
     }
   }
-  submitEvaluation(participantId: number): void {
+  submitEvaluation(): void {
     if (this.selectedFormation) {
       console.log('Selected Formation:', this.selectedFormation);
       console.log('Evaluation:', this.evaluation);
-      console.log(participantId)
-      this.evaluationService.createEvaluation(participantId, this.selectedFormation.id, this.evaluation).subscribe(res => {
+      this.evaluationService.createEvaluation(this.participantNom, this.selectedFormation.id, this.evaluation).subscribe(res => {
         console.log(res);
         Swal.fire({
           icon: 'success',

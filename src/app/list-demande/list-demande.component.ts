@@ -87,6 +87,7 @@ export class ListDemandeComponent implements OnInit {
           title: 'Participant converti en Formateur avec succès',
           showConfirmButton: true,
         });
+        this.getAlldemande();
         // Reload the participant list
       },
       error => {
@@ -114,9 +115,10 @@ export class ListDemandeComponent implements OnInit {
       if (result.isConfirmed) {
         this.demandeService.acceptDemande(id).subscribe(
           () => {
+            this.getAlldemande(); // Réactualiser la liste des demandes
+
             this.convertToFormateur(participantId)
 
-            this.getAlldemande(); // Réactualiser la liste des demandes
           },
 
         );

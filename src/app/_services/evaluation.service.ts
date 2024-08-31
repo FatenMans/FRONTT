@@ -14,8 +14,8 @@ export class EvaluationService {
 
   constructor(private http: HttpClient) { }
 
-  createEvaluation(participantId: number, formationId: number, evaluation: Evaluation): Observable<Evaluation> {
-    return this.http.post<Evaluation>(`${this.apiUrl}/create/${participantId}/${formationId}`, evaluation);
+  createEvaluation(partnom: string, formationId: number, evaluation: Evaluation): Observable<Evaluation> {
+    return this.http.post<Evaluation>(`${this.apiUrl}/create/${partnom}/${formationId}`, evaluation);
   }
   getAllEvaluations(): Observable<Evaluation[]> {
     return this.http.get<Evaluation[]>(this.apiUrl);

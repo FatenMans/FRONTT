@@ -17,7 +17,7 @@ export class EditFormateurComponent implements OnInit {
   formateur: Formateur = new Formateur();
 
   submitted = false;
-themes: any;
+  themes: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +36,7 @@ themes: any;
       cin: ['', Validators.required],
       matricule: ['', Validators.required],
       tel: ['', Validators.required],
-     
+
       autorisation: ['', Validators.required],
       typeFormateur: ['', Validators.required],
       themeId: [, Validators.required], // Changed to single themeId
@@ -52,7 +52,9 @@ themes: any;
   getFormateur(id: string): void {
     this.formateurService.getFormateurById(parseInt(id)).subscribe({
       next: (data) => {
+        console.log(data);
         this.formModel.patchValue(data);
+        this.formModel.controls['themeId'].setValue(data.themes[0].id);
       },
       error: (e) => console.error(e)
     });

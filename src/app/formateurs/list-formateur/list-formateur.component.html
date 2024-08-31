@@ -36,19 +36,31 @@
 
                 <div class="d-flex justify-content-between mb-3">
                     <div class="input-group">
-                        <input [(ngModel)]="inputSearch" (ngModelChange)="searchFormateur()" placeholder="Rechercher un formateur..." class="form-control">
+                        <input [(ngModel)]="inputSearch" (ngModelChange)="searchFormateur()"
+                            placeholder="Rechercher un formateur..." class="form-control">
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Sélectionner un thème
+                    <div class="form-group col-lg-4">
+                        <select class="form-control " id="select-typeFormation" name="theme"
+                            (change)="onThemeSelect($event)">
+                            <option value="">Select Theme</option>
+                            <option *ngFor="let theme of themes" [value]="theme.theme">
+                                {{ theme.theme }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="themeDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sélectionner un thème
                         </button>
                         <div class="dropdown-menu" aria-labelledby="themeDropdown">
-                          <a class="dropdown-item" *ngFor="let theme of themes" (click)="onThemeSelect(theme)">
-                            {{ theme.theme }}
-                          </a>
+                            <a class="dropdown-item" *ngFor="let theme of themes" (click)="onThemeSelect(theme)">
+                                {{ theme.theme }}
+                            </a>
                         </div>
-                      </div>
-                    </div>
+                    </div> -->
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -60,7 +72,7 @@
                                 <th>CIN</th>
                                 <th>Matricule</th>
                                 <th>Téléphone</th>
-                             
+
                                 <th>Autorisation</th>
                                 <th>Type Formateur</th>
                                 <th>Email</th>
@@ -78,15 +90,17 @@
                                 <td>{{ formateur.cin }}</td>
                                 <td>{{ formateur.matricule }}</td>
                                 <td>{{ formateur.tel }}</td>
-                                
+
                                 <td>{{ formateur.autorisation }}</td>
                                 <td>{{ formateur.typeFormateur }}</td>
                                 <td>{{ formateur.mail }}</td>
                                 <td>{{ formateur.lastModifiedDate | date: 'short' }}</td>
                                 <td>{{ formateur.lastModifiedBy }}</td>
                                 <td>
-                                    <button class="btn-custom btn-custom-modifier" routerLink="/edit-formateur/{{formateur.id}}">Modifier</button>
-                                    <button class="btn-custom btn-custom-supprimer" (click)="deleteFormateur(formateur.id)">Supprimer</button>
+                                    <button class="btn-custom btn-custom-modifier"
+                                        routerLink="/edit-formateur/{{formateur.id}}">Modifier</button>
+                                    <button class="btn-custom btn-custom-supprimer"
+                                        (click)="deleteFormateur(formateur.id)">Supprimer</button>
                                 </td>
                             </tr>
                         </tbody>

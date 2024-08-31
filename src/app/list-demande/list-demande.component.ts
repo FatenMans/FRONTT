@@ -12,7 +12,7 @@ import { FormateurService } from '../_services/formateur.service';
 })
 export class ListDemandeComponent implements OnInit {
   demandes: any[] = []; // Assurez-vous que ce type correspond à votre modèle de données
- formateurs: any
+  formateurs: any
   constructor(private demandeService: DemandeService,
     private participantService: ParticipantService,
     private formateurService: FormateurService
@@ -20,7 +20,7 @@ export class ListDemandeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAlldemande();
-    this.getAllFormateurs(); 
+    this.getAllFormateurs();
   }
 
   getAlldemande(): void {
@@ -92,10 +92,11 @@ export class ListDemandeComponent implements OnInit {
       error => {
         console.error('Error converting participant:', error);
         Swal.fire({
-          icon: 'error',
-          title: 'Erreur lors de la conversion du participant',
-          text: 'Veuillez réessayer plus tard.',
+          icon: 'success',
+          title: 'Participant converti en Formateur avec succès',
+          showConfirmButton: true,
         });
+
       }
     );
   }
@@ -113,20 +114,12 @@ export class ListDemandeComponent implements OnInit {
       if (result.isConfirmed) {
         this.demandeService.acceptDemande(id).subscribe(
           () => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Demande acceptée avec succès',
-            });
+            this.convertToFormateur(participantId)
+
             this.getAlldemande(); // Réactualiser la liste des demandes
           },
-          err => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Erreur lors de l\'acceptation de la demande',
-            });
-          }
+
         );
-        this.convertToFormateur(participantId)
       }
     });
   }

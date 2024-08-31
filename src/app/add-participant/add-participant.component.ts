@@ -74,7 +74,7 @@ export class AddParticipantComponent implements OnInit {
       console.error('Error fetching lieux:', error);
     });
   }
-  
+
 
 
   get f() { return this.formModel.controls; }
@@ -99,7 +99,7 @@ export class AddParticipantComponent implements OnInit {
           title: 'participant ajoutée avec succès',
           showConfirmButton: true,
         });
-        this.router.navigate(['/login']);
+        this.router.navigate(['/list-participant']);
       },
       err => {
         Swal.fire({

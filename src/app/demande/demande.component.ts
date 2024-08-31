@@ -103,7 +103,7 @@ isAdmin: any;
     const participant = { nom: user?.userName };
     // Replace with the actual name or retrieve it dynamically
 
-//nzid theme
+    //nzid theme
 
     this.participantService.AddFileToPart(participant.nom, this.FormModel.value.selectedFile!).subscribe(
       response => {
@@ -123,6 +123,7 @@ isAdmin: any;
           title: 'Demande ajoutée avec succès',
           showConfirmButton: true,
         });
+        this.router.navigate(['/home']);
       },
       err => {
         Swal.fire({

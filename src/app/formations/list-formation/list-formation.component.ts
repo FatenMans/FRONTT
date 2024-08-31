@@ -17,17 +17,27 @@ import { Formation } from 'src/app/models/formation.model';
 })
 export class ListFormationsComponent implements OnInit {
   [x: string]: any;
+<<<<<<< HEAD
 
   formation : any
+=======
+  formations: any[] = [];
+  formation: any
+>>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
   isUser: boolean = false;
   userId: any;
   participantnom: any;
   participants: any[] = [];
+<<<<<<< HEAD
   role:any;
   formations: Formation[] = [];
   filteredformations: Formation[] = [];
   themes: any[] = [];
   selectedTheme: string = '';
+=======
+  role: any;
+  themes: any
+>>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
 
   constructor(private formationService: FormationService, private router: Router, private fb: FormBuilder, private themeService: ThemeService,
     private participantService: ParticipantService
@@ -35,17 +45,23 @@ export class ListFormationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormations();
+<<<<<<< HEAD
     this['getThemes']();
     this.loadFormations();
     this.loadThemes();
    
    
+=======
+
+
+>>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
     this.getRole()
     this['myForm'] = this.fb.group({
       typeFormateur: new FormControl('')
       // Autres contrôles de formulaire ici
     });
   }
+<<<<<<< HEAD
   private getThemes() {
     this.themeService.getThemes().subscribe(
       data => {
@@ -74,45 +90,56 @@ export class ListFormationsComponent implements OnInit {
   }
   
   
+=======
+
+>>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
   participer(formationId: number): void {
     const user = JSON.parse(localStorage.getItem('user')!);
-    console.log(user)
+    console.log(user);
     const participant = { nom: user?.userName };
 
     if (participant.nom) {
-        this.formationService.addParticipantToFormation(formationId, participant.nom).subscribe(
-
+      Swal.fire({
+        title: 'Confirmation',
+        text: 'Êtes-vous sûr de vouloir participer à cette formation?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.formationService.addParticipantToFormation(formationId, participant.nom).subscribe(
             () => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Succès',
-                    text: 'Vous avez participé avec succès à la formation.',
-                  
-                    confirmButtonText: 'OK'
-
-                });
-                this.router.navigate(['/enrolled-formations'])
+              Swal.fire({
+                icon: 'success',
+                title: 'Succès',
+                text: 'Vous avez participé avec succès à la formation.',
+                confirmButtonText: 'OK'
+              });
+              this.router.navigate(['/enrolled-formations']);
             },
             error => {
-                console.error('Erreur lors de l\'ajout du participant à la formation:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erreur',
-                    text: 'Une erreur est survenue. Veuillez réessayer.',
-                    confirmButtonText: 'OK'
-                });
+              console.error('Erreur lors de l\'ajout du participant à la formation:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Une erreur est survenue. Veuillez réessayer.',
+                confirmButtonText: 'OK'
+              });
             }
-        );
+          );
+        }
+      });
     } else {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Avertissement',
-            text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
-            confirmButtonText: 'OK'
-        });
+      Swal.fire({
+        icon: 'warning',
+        title: 'Avertissement',
+        text: 'Nom du participant non trouvé. Veuillez vous reconnecter.',
+        confirmButtonText: 'OK'
+      });
     }
   }
- 
+
 
   private getFormations() {
     this.formationService.getFormation().subscribe(
@@ -128,6 +155,7 @@ export class ListFormationsComponent implements OnInit {
     console.log(this.role)
 
   }
+<<<<<<< HEAD
   loadFormations(): void {
     this.formationService.getFormation().subscribe(
       (data: Formation[]) => {
@@ -140,6 +168,10 @@ export class ListFormationsComponent implements OnInit {
     );
   }
   
+=======
+
+
+>>>>>>> c46b379a127e6f7fd056852527df641ce9b67b47
 
   deleteFormation(id: number) {
     Swal.fire({

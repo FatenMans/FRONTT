@@ -14,10 +14,7 @@
                                 <label for="adress">NomCbinet</label>
                                 <input id="adress" formControlName="nomCabinet" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label for="adress">Adresse</label>
-                                <input id="adress" formControlName="adress" class="form-control" />
-                            </div>
+
                             <div class="form-group">
                                 <label for="contact">Contact</label>
                                 <input id="contact" formControlName="contact" class="form-control" />
@@ -36,8 +33,8 @@
                                     <option *ngFor="let lieu of lieux" [value]="lieu.id">{{ lieu.lieu }}</option>
                                 </select>
                             </div>
-                           <button type="submit" class="btn btn-primary" (click)="ModifierCabinet()">Modifier
-                            Formation </button>
+                            <button type="submit" class="btn btn-primary" (click)="ModifierCabinet()">Modifier
+                                Formation </button>
                         </form>
                     </div>
                 </div>

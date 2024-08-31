@@ -22,9 +22,9 @@ export class EditThemeComponent implements OnInit {
     this.themeForm = this.formBuilder.group({
       codeTheme: ['', Validators.required],
       theme: ['', Validators.required],
-      typeThemeIntraInter: ['', Validators.required],
       accord: ['', Validators.required],
-      documents: ['', Validators.required],
+      // documents: ['', Validators.required],
+      typeFormation: ['', Validators.required],
       // Add other fields here if necessary
     });
   }
@@ -54,32 +54,32 @@ export class EditThemeComponent implements OnInit {
         ...this.themeForm.value,
         lastModifiedDate: new Date().toISOString() // Assurez-vous que lastModifiedAt est inclus ici
       };
-    if (this.themeForm.valid) {
-      const updatedTheme = this.themeForm.value;
-      const id = this.route.snapshot.paramMap.get('id');
-      if (id) {
-        this.themeService.ModifierTheme(parseInt(id), updatedTheme).subscribe({
-          next: (res) => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Thème modifié avec succès',
-              showConfirmButton: true,
-            });
-            this.router.navigate(['/list-theme']);
-          },
-          error: (e) => {
-            console.error(e);
-            // Gérer l'erreur ici, par exemple afficher une alerte d'erreur
-            Swal.fire({
-              icon: 'error',
-              title: 'Erreur lors de la modification du thème',
-              text: 'Une erreur est survenue, veuillez réessayer plus tard.',
-              showConfirmButton: true,
-            });
-          }
-        });
+      if (this.themeForm.valid) {
+        const updatedTheme = this.themeForm.value;
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id) {
+          this.themeService.ModifierTheme(parseInt(id), updatedTheme).subscribe({
+            next: (res) => {
+              Swal.fire({
+                icon: 'success',
+                title: 'Thème modifié avec succès',
+                showConfirmButton: true,
+              });
+              this.router.navigate(['/list-theme']);
+            },
+            error: (e) => {
+              console.error(e);
+              // Gérer l'erreur ici, par exemple afficher une alerte d'erreur
+              Swal.fire({
+                icon: 'error',
+                title: 'Erreur lors de la modification du thème',
+                text: 'Une erreur est survenue, veuillez réessayer plus tard.',
+                showConfirmButton: true,
+              });
+            }
+          });
+        }
       }
     }
-  }
   }
 }

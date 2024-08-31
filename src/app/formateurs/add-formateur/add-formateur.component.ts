@@ -37,7 +37,8 @@ export class AddFormateurComponent implements OnInit {
     cin: ['', Validators.required],
     matricule: ['', Validators.required],
     tel: ['', Validators.required],
-   
+    password: ['', Validators.required],
+
     autorisation: ['', Validators.required],
     typeFormateur: ['', Validators.required],
     themeId: [, Validators.required], // Changed to single themeId

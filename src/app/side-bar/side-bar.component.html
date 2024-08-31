@@ -14,7 +14,8 @@
 
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleFormateur()">
-                        <span class="micon dw dw-edit2"></span><span class="mtext">Formateurs</span>
+                        <i class="micon fa fa-user-circle-o" aria-hidden="true"></i><span
+                            class="mtext">Formateurs</span>
                     </a>
                     <ul id="Formateur" class="submenu">
                         <li><a routerLink="/list-Formateur" routerLinkActive="active">List Formateur</a></li>
@@ -32,7 +33,7 @@
                 </li>
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleTheme()">
-                        <span class="micon dw dw-paint-brush"></span><span class="mtext">Themes</span>
+                        <i class="micon fa fa-bars" aria-hidden="true"></i><span class="mtext">Themes</span>
                     </a>
                     <ul class="submenu" id="Theme">
                         <li><a routerLink="/list-theme" routerLinkActive="active">List Theme</a></li>
@@ -55,7 +56,7 @@
                 </li>
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleParticipant()">
-                        <span class="micon dw dw-apartment"></span><span class="mtext">Participant</span>
+                        <i class="micon fa fa-user-o" aria-hidden="true"></i><span class="mtext">Participant</span>
                     </a>
                     <ul class="submenu" id="Participant">
                         <li><a routerLink="/list-participant">List participant</a></li>
@@ -64,34 +65,28 @@
                 </li>
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleLieu()">
-                        <span class="micon dw dw-apartment"></span><span class="mtext">Lieu</span>
+                        <i class="micon icon-copy fa fa-podcast" aria-hidden="true"></i><span class="mtext">Lieu</span>
                     </a>
                     <ul class="submenu" id="Lieu">
                         <li><a routerLink="/lieu">Lieu</a></li>
                         <li><a routerLink="/add-lieu">Add Lieu</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" *ngIf="role=='Admin'|| 'User'">
-                    <a class="dropdown-toggle" (click)="togglePlanFormation()">
-                        <span class="micon dw dw-library"></span><span class="mtext">Plan Formation</span>
-                    </a>
-                    <ul id="planFormation" class="submenu" id="Plan formation">
-                        <li><a routerLink="/list-actionformation">List Action Formation</a></li>
-                        <li><a routerLink="/add-actionformation">Add Action Formation</a></li>
-                    </ul>
-                </li>
+
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleEval()">
-                        <span class="micon dw dw-library"></span><span class="mtext">Eval</span>
+                        <i class="micon icon-copy fa fa-check-circle" aria-hidden="true"></i><span
+                            class="mtext">Eval</span>
                     </a>
                     <ul id="planFormation" class="submenu" id="Eval">
-                        <li><a routerLink="/eval">Evaluation</a></li>
+                        <li><a routerLink="/list-eval">Evaluation</a></li>
 
                     </ul>
                 </li>
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleLieuHebergement()">
-                        <span class="micon dw dw-apartment"></span><span class="mtext">Lieu Hebergement</span>
+                        <i class="micon icon-copy ion-ios-location-outline"></i><span class="mtext">Lieu
+                            Hebergement</span>
                     </a>
                     <ul class="submenu" id="LieuHebergement">
                         <li><a routerLink="/lieuHebergement">Lieu</a></li>
@@ -100,7 +95,8 @@
                 </li>
                 <li class="dropdown" *ngIf="role=='Admin'">
                     <a class="dropdown-toggle" (click)="toggleDemande()">
-                        <span class="micon dw dw-apartment"></span><span class="mtext"> Demande</span>
+                        <i class="micon icon-copy fa fa-envelope-open-o" aria-hidden="true"></i><span class="mtext">
+                            Demande</span>
                     </a>
                     <ul class="submenu" id="Demande">
                         <li><a routerLink="/list-demande"> List-Demande</a></li>

@@ -36,6 +36,8 @@ import { EvalComponent } from './eval/eval.component';
 import { DemandeComponent } from './demande/demande.component';
 import { ListDemandeComponent } from './list-demande/list-demande.component';
 import { EnrolledFormationsComponent } from './enrolled-formations/enrolled-formations.component';
+import { ListEvalComponent } from './list-eval/list-eval.component';
+import { DemandeDetailsComponent } from './demande-details/demande-details.component';
 
 
 const routes: Routes = [
@@ -59,6 +61,7 @@ const routes: Routes = [
   { path: 'participant', component: ParticipantService, canActivate: [AuthGuard], data: { roles: ['PARTICIPANT'] } },
   { path: 'add-actionformation', component: AddActionFormationComponent },
   { path: 'eval/:formationId', component: EvalComponent },
+  { path: 'list-eval', component: ListEvalComponent }, // Replace with the actual component
 
 
   { path: 'list-actionformation', component: ListActionformationComponent },
@@ -76,6 +79,8 @@ const routes: Routes = [
   { path: 'list-cabinet', component: ListCabinetComponent },
   { path: 'add-cabinet', component: AddCabinetComponent },
   { path: 'demande', component: DemandeComponent},
+  { path: 'demande-details/:id', component: DemandeDetailsComponent},
+
   { path: 'list-demande', component: ListDemandeComponent},
   { path: 'enrolled-formations', component: EnrolledFormationsComponent},
   { path: '**', redirectTo: '/login', pathMatch: 'full' },

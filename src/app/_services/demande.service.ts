@@ -39,5 +39,8 @@ export class DemandeService {
   refuserDemande(id: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/refuser/${id}`, {});
   }
+  getDemande(id: number): Observable<void>{
+    return this.http.get<void>(`${this.apiUrl}/${id}`);
+  }
 }
 

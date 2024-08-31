@@ -1,0 +1,55 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Liste des evaluations</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix mb-20">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Liste des evaluations</h4>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Participant</th>
+                                <th>Formation</th>
+                                <th>Avis</th>
+                                <th>Commentaire</th>
+                                <th>Note</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let evaluation of evaluations">
+                                <td>{{ evaluation.id }}</td>
+                                <td>{{ evaluation.participant.nom }}</td>
+                                <td>{{ evaluation.formation.nomFormation }}</td>
+                                <td>{{ evaluation.commentVous_Evaluez_Votre_Formateur }}</td>
+                                <td>{{ evaluation.commentaire }}</td>
+                                <td>{{ evaluation.note }}</td>
+
+                                <td>
+                                    <button class="btn btn-danger" (click)="deleteEval(evaluation.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

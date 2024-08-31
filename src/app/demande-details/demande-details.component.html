@@ -1,0 +1,76 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<div class="main-container">
+    <div class="container mt-4">
+        <div class="page-header mb-4">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="title">Register</h4>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Register</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <form [formGroup]="FormModel">
+                    <div class="form-group mb-3">
+                        <label for="objectifs">Nom participant</label>
+                        <input id="objectifs" [value]="participant.nom" class="form-control" type="text" disabled />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="experience">Expérience</label>
+                        <input id="experience"  formControlName="experience" class="form-control" type="text" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="competences">Compétences</label>
+                        <input id="competences" formControlName="competences" class="form-control" type="text" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="motivation">Quel est votre Motivation pour devenir formateur</label>
+                        <input id="motivation" formControlName="motivation" class="form-control" type="text" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="objectifs">Objectifs</label>
+                        <input id="objectifs" formControlName="objectifs" class="form-control" type="text" />
+                    </div>
+                    <!-- <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="formateurId">Theme</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select formControlName="themeId" class="form-control" id="themeId" required>
+                                <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.theme }}
+                                </option>
+                            </select>
+                            <div *ngIf=" f.themeId.errors" class="invalid-feedback">
+                                <div *ngIf="f.themeId.errors">Theme is required</div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group mb-3">
+                        <label for="fileInput">CV</label>
+                        <br>
+                        <a (click)="downloadFile(participant.cvFileName)"><img src="../../assets/images/images.png"
+                                alt="" style="width: 40px;"></a>
+                    </div>
+
+                    <div class="float-right">
+                        <button class="btn btn-primary" (click)="acceptDemande()">Accepter</button>
+                        <button class="btn btn-danger" (click)="refuserDemande()">Refuser</button>
+                    </div>
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

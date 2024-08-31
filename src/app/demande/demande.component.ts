@@ -32,6 +32,7 @@ export class DemandeComponent implements OnInit {
     themeId: [, Validators.required], // Changed to single themeId
 
   });
+isAdmin: any;
 
   constructor(
     private formBuilder: FormBuilder,

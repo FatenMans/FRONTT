@@ -29,4 +29,5 @@ export class AuthService {
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken ? decodedToken.id : null;
   }
+ 
 }

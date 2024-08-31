@@ -33,7 +33,6 @@
                                 <th>Frais Total Formateur</th>
                                 <th>Nom Formateur</th>
                                 <th>Evaluation</th>
-                               
                             </tr>
                         </thead>
                         <tbody>
@@ -48,14 +47,29 @@
                                 <td>{{ enrolledFormation.typeformation }}</td>
                                 <td>{{ enrolledFormation.fraisTotalFormateur }}</td>
                                 <td>{{ enrolledFormation.formateur.nom }}</td>
-                               
-                                    <button (click)="openEvaluationForm(formation?.id)">Evaluer</button>
-                                  
+                                <td>
+                                    <button class="btn btn-secondary" (click)="selectFormation(enrolledFormation)">Évaluer</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <!-- Display evaluation form only when a formation is selected -->
+                    <div *ngIf="selectedFormation">
+                        <h3>Évaluer {{ selectedFormation.nomFormation }}</h3>
+                        <form (ngSubmit)="submitEvaluation(participantId)">
+                          <div class="form-group">
+                            <label for="note">Note</label>
+                            <input type="number" id="note" class="form-control" [(ngModel)]="evaluation.note" name="note" min="1" max="10" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="commentaire">Comment vous evaluez le formateur </label>
+                            <textarea id="commentaire" class="form-control" [(ngModel)]="evaluation.commentVous_Evaluez_Votre_Formateur" name="commentaire" required></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="commentaire">Commentaire</label>
+                            <textarea id="commentaire" class="form-control" [(ngModel)]="evaluation.commentaire" name="commentaire" required></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Enregistrer</button>
+                          <button type="button" class="btn btn-secondary" (click)="cancelEvaluation()">Annuler</button>
+                        </form>
+                      </div>

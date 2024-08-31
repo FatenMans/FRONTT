@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EvalComponent } from '../eval/eval.component';
+import { Evaluation } from '../models/evaluation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,16 @@ export class EvaluationService {
 
   private apiUrl = 'http://localhost:8080/api/evaluations';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  createEvaluation(participantId: number, formationId: number, evaluation: any): Observable<any> {
-    return this.http.post<any[]>(`${this.apiUrl}${this.apiUrl}/create/${participantId}/${formationId}`, evaluation);
+  createEvaluation(participantId: number, formationId: number, evaluation: Evaluation): Observable<Evaluation> {
+    return this.http.post<Evaluation>(`${this.apiUrl}/create/${participantId}/${formationId}`, evaluation);
+  }
+  getAllEvaluations(): Observable<Evaluation[]> {
+    return this.http.get<Evaluation[]>(this.apiUrl);
+  }
 
-}
+  deleteById(evalId: number) {
+    return this.http.delete(`${this.apiUrl}/delete/${evalId}`);
+  }
 }

@@ -51,6 +51,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { EvalComponent } from './eval/eval.component';
+import { ListEvalComponent } from './list-eval/list-eval.component';
+import { DemandeDetailsComponent } from './demande-details/demande-details.component';
 
 
 
@@ -96,6 +98,8 @@ import { EvalComponent } from './eval/eval.component';
 DemandeComponent,
 ListDemandeComponent,
 EnrolledFormationsComponent,
+ListEvalComponent,
+DemandeDetailsComponent,
 
   
     

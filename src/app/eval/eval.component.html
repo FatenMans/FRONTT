@@ -1,21 +1,32 @@
 <app-header></app-header>
 <app-side-bar></app-side-bar>
-<h2>Evaluation Form</h2>
-<form (ngSubmit)="submitEvaluation()">
-  <div>
-    <label>Quality of Content:</label>
-    <input type="radio" name="quality" value="Excellent"> Excellent
-    <input type="radio" name="quality" value="Good"> Good
-    <input type="radio" name="quality" value="Average"> Average
-    <input type="radio" name="quality" value="Poor"> Poor
-  </div>
-  <!-- Add more questions as needed -->
-  
-  <div>
-    <label>Additional Comments:</label>
-    <textarea [(ngModel)]="evaluation.comments" name="comments"></textarea>
-  </div>
-  
-  <button type="submit">Submit Evaluation</button>
-</form>
-
+<div class="main-container">
+  <div class="container mt-4">
+    <div class="page-header mb-4">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <h4 class="title">Register</h4>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Register</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h2>Évaluer la formation</h2>
+      <form (ngSubmit)="submitEvaluation()">
+        <div class="form-group">
+          <label for="note">Note</label>
+          <input type="number" id="note" class="form-control" [(ngModel)]="evaluation.note" name="note" min="1" max="10" required>
+        </div>
+        <div class="form-group">
+          <label for="commentaire">Commentaire</label>
+          <textarea id="commentaire" class="form-control" [(ngModel)]="evaluation.commentaire" name="commentaire" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
+    </div>
+    

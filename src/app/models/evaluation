@@ -1,9 +1,0 @@
-export interface Evaluation {
-  // Define the fields of the Evaluation entity
-  id?: number;
-  participantId: number;
-  formationId: number;
-  comment: string;
-  youropinion: string
-  // Add other fields as per your Evaluation entity
-}
